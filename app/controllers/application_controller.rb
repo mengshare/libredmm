@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    @details = OpenDMM.search(params[:keyword])
+    redirect_to product_path(params[:keyword])
   end
 end
