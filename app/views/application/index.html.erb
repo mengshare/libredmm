@@ -2,7 +2,7 @@
   <p class='logo-lg'>LibreDMM</p>
   <%= form_tag search_path, method: :get, class: 'form search-box' do %>
     <div class='form-group'>
-      <%= text_field_tag 'keyword', nil, class: 'form-control'%>
+      <%= text_field_tag 'q', nil, class: 'form-control'%>
     </div>
     <%= submit_tag 'Search', class: 'btn btn-success' %>
   <% end %>
