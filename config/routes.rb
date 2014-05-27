@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'products/show'
-
-  root 'application#index'
-  get 'search', to: 'application#search', as: :search
+  root 'pages#index'
+  get 'search', to: 'pages#search', as: :search
   resources :products, only: :show
 end

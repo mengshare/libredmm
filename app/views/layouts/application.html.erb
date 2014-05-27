@@ -3,12 +3,24 @@
 <head>
   <title>LibreDMM</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    params[:controller], media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class='container'>
-
-<%= yield %>
-
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <a class="logo navbar-brand" href="/">LibreDMM</a>
+      <%= form_tag search_path, method: :get, class: "navbar-form navbar-left col-sm-12" do %>
+        <div class="form-group">
+          <%= text_field_tag "q", nil, class: "form-control input-sm"%>
+        </div>
+        <%= submit_tag "Search", class: "btn btn-success btn-sm" %>
+      <% end %>
+    </div>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

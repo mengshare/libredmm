@@ -1,4 +1,4 @@
-<article class="product">
+<article class="product row">
   <header class="col-sm-12">
     <h1><%= @product.title %></h1>
   </header>
@@ -9,15 +9,23 @@
     <dl class="dl-horizontal">
       <%= dl_item("Actresses", @product.actresses.keys) %>
       <%= dl_item("Actress Types", @product.actress_types) %>
-      <%= dl_item("Brand", @product.brand) %>
       <%= dl_item("Directors", @product.directors) %>
+      <%= dl_item("Brand", @product.brand) %>
       <%= dl_item("Genres", @product.genres) %>
       <%= dl_item("Label", @product.label) %>
-      <%= dl_item("Maker", @product.maker) %>
-      <%= dl_item("Movie Length", @product.movie_length) %>
-      <%= dl_item("Release Date", @product.release_date) %>
       <%= dl_item("Scenes", @product.scenes) %>
       <%= dl_item("Series", @product.series) %>
+      <%= dl_item("Movie Length", @product.movie_length) %>
+      <%= dl_item("Release Date", @product.release_date) %>
+      <%= dl_item("Maker", @product.maker) %>
+      <%- if @product.page %>
+        <dt>Page</dt>
+        <dd>
+          <%= link_to @product.page, target: "_blank" do %>
+            <span class="glyphicon glyphicon-new-window"></span>
+          <% end %>
+        </dd>
+      <%- end %>
     </dl>
   </section>
   <section class="description col-sm-12">
