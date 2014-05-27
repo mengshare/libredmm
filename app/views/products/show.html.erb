@@ -1,12 +1,17 @@
 <article class="product row">
   <header class="col-sm-12">
-    <h1><%= @product.title %></h1>
+    <h1>
+      <span><%= @product.code %></span>
+      <span><%= @product.title %></span>
+    </h1>
   </header>
   <section class="cover col-sm-8">
     <%= image_link_to @product.cover_image, class: "img-rounded" %>
   </section>
   <section class="details col-sm-4">
     <dl class="dl-horizontal">
+      <%= dl_item("Title", @product.title) %>
+      <%= dl_item("Code", @product.code) %>
       <%= dl_item("Actresses", @product.actresses.keys) %>
       <%= dl_item("Actress Types", @product.actress_types) %>
       <%= dl_item("Directors", @product.directors) %>
@@ -35,7 +40,7 @@
   <section class="samples col-sm-12">
     <h2>Sample Images</h2>
     <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
-      <div class="col-sm-12">
+      <div class="sample-group col-sm-12 row">
         <%- group.each do |image| %>
           <%= image_link_to image, class: "img-thumbnail col-sm-2" %>
         <%- end %>
