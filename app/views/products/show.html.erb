@@ -1,1 +1,37 @@
-<%= @product.inspect %>
+<article class="product">
+  <header class="col-sm-12">
+    <h1><%= @product.title %></h1>
+  </header>
+  <section class="cover col-sm-8">
+    <%= image_link_to @product.cover_image, class: "img-rounded" %>
+  </section>
+  <section class="details col-sm-4">
+    <dl class="dl-horizontal">
+      <%= dl_item("Actresses", @product.actresses.keys) %>
+      <%= dl_item("Actress Types", @product.actress_types) %>
+      <%= dl_item("Brand", @product.brand) %>
+      <%= dl_item("Directors", @product.directors) %>
+      <%= dl_item("Genres", @product.genres) %>
+      <%= dl_item("Label", @product.label) %>
+      <%= dl_item("Maker", @product.maker) %>
+      <%= dl_item("Movie Length", @product.movie_length) %>
+      <%= dl_item("Release Date", @product.release_date) %>
+      <%= dl_item("Scenes", @product.scenes) %>
+      <%= dl_item("Series", @product.series) %>
+    </dl>
+  </section>
+  <section class="description col-sm-12">
+    <h2>Description</h2>
+    <p><%= @product.description %></p>
+  </section>
+  <section class="samples col-sm-12">
+    <h2>Sample Images</h2>
+    <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
+      <div class="col-sm-12">
+        <%- group.each do |image| %>
+          <%= image_link_to image, class: "img-thumbnail col-sm-2" %>
+        <%- end %>
+      </div>
+    <%- end %>
+  </section>
+</article>
