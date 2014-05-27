@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  actresses: MyText
+  actress_types: MyText
+  brand: MyString
+  code: MyString
+  cover_image: MyString
+  description: MyText
+  directors: MyText
+  genres: MyText
+  label: MyString
+  maker: MyString
+  movie_length: 1
+  page: MyString
+  release_date: 2014-05-26
+  sample_images: MyText
+  scenes: MyText
+  series: MyString
+  title: MyString
+
+two:
+  actresses: MyText
+  actress_types: MyText
+  brand: MyString
+  code: MyString
+  cover_image: MyString
+  description: MyText
+  directors: MyText
+  genres: MyText
+  label: MyString
+  maker: MyString
+  movie_length: 1
+  page: MyString
+  release_date: 2014-05-26
+  sample_images: MyText
+  scenes: MyText
+  series: MyString
+  title: MyString
