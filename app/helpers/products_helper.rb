@@ -22,7 +22,7 @@ module ProductsHelper
     when Date
       dd = content_tag(:dd, description)
     when Fixnum
-      dd = content_tag(:dd, "#{description / 60}.minutes")
+      dd = content_tag(:dd, distance_of_time(description))
     else
       return nil
     end

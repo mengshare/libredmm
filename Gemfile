@@ -15,6 +15,7 @@ gem 'jbuilder'
 gem 'uglifier'
 
 gem 'opendmm', path: '../opendmm'
+gem 'dotiw'
 
 group :development do
   gem 'guard'
