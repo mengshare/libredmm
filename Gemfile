@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-gem 'sqlite3'
+gem 'pg'
 
 gem 'sass-rails'
 gem 'bootstrap-sass'
@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'
 
-gem 'opendmm', path: '../opendmm'
+gem 'opendmm', git: 'https://github.com/opendmm/opendmm.git'
 gem 'dotiw'
 
 group :development do
@@ -24,3 +24,9 @@ group :development do
 end
 
 gem 'unicorn'
+
+group :production do
+  gem 'rails_12factor'
+end
+
+ruby '2.1.2'
