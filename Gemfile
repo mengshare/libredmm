@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'
 
-gem 'opendmm', git: 'https://github.com/opendmm/opendmm.git'
+gem 'opendmm', git: 'https://github.com/opendmm/opendmm.git', branch: :develop
 gem 'dotiw'
 
 group :development do

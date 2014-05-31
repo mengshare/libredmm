@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140526104255) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "products", force: true do |t|
     t.text     "actresses"
     t.text     "actress_types"
@@ -35,6 +38,6 @@ ActiveRecord::Schema.define(version: 20140526104255) do
     t.datetime "updated_at"
   end
 
-  add_index "products", ["code"], name: "index_products_on_code"
+  add_index "products", ["code"], name: "index_products_on_code", using: :btree
 
 end
