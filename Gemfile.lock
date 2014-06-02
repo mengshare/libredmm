@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 85746dde661381277b0b08b115e591a298eacb21
+  revision: 4d2b6ca81fb3c65b35d6c366e99836c0b72125ee
   branch: develop
   specs:
     opendmm (0.0.1)
@@ -65,8 +65,8 @@ GEM
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
-    guard-rails (0.5.2)
-      guard (~> 2.0)
+    guard-unicorn (0.1.1)
+      guard (>= 1.1)
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -81,7 +81,7 @@ GEM
     json (1.8.1)
     kgio (2.9.2)
     libv8 (3.16.14.3)
-    listen (2.7.5)
+    listen (2.7.6)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -162,7 +162,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.2.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
@@ -180,7 +180,7 @@ DEPENDENCIES
   coffee-rails
   dotiw
   guard
-  guard-rails
+  guard-unicorn
   jbuilder
   jquery-rails
   opendmm!

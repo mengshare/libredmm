@@ -19,7 +19,7 @@ gem 'dotiw'
 
 group :development do
   gem 'guard'
-  gem 'guard-rails'
+  gem 'guard-unicorn'
   gem 'spring'
 end
 
