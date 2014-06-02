@@ -5,5 +5,7 @@ class ProductsController < ApplicationController
       details = OpenDMM.search(params[:id])
       @product = Product.create(details) if details
     end
+  rescue
+    redirect_to root_url
   end
 end
