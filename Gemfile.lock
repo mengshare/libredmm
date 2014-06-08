@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 4d2b6ca81fb3c65b35d6c366e99836c0b72125ee
+  revision: c28c6b33eec94bee6d9985a604ec05d0deaf57fc
   branch: develop
   specs:
     opendmm (0.0.1)
@@ -56,7 +56,7 @@ GEM
     coffee-script-source (1.7.0)
     dotiw (0.4.1)
     erubis (2.7.0)
-    execjs (2.1.0)
+    execjs (2.2.0)
     ffi (1.9.3)
     formatador (0.2.5)
     guard (2.6.1)
@@ -72,7 +72,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
-    jbuilder (2.0.7)
+    jbuilder (2.0.8)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -81,7 +81,7 @@ GEM
     json (1.8.1)
     kgio (2.9.2)
     libv8 (3.16.14.3)
-    listen (2.7.6)
+    listen (2.7.7)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -130,7 +130,7 @@ GEM
     raindrops (0.13.0)
     rake (10.3.2)
     rb-fsevent (0.9.4)
-    rb-inotify (0.9.4)
+    rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     ref (1.0.5)
     sass (3.2.19)

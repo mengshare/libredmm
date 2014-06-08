@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
       @product = Product.create(details) if details
     end
   rescue
+    raise if Rails.env.development?
     redirect_to root_url
   end
 end
