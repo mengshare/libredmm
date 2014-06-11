@@ -27,6 +27,7 @@ gem 'unicorn'
 
 group :production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 ruby '2.1.2'
