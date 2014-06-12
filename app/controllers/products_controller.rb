@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
       details = OpenDMM.search(params[:id])
       @product = Product.create(details) if details
     end
+    render :notfound unless @product
   rescue
-    raise if Rails.env.development?
-    redirect_to root_url
+    render :notfound
   end
 end
