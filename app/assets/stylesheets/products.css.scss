@@ -9,7 +9,7 @@ article.product {
     }
   }
   section.details {
-    padding-top: 15px;
+    padding-top: 10px;
     dl.dl-horizontal {
       dt {
         width: 100px;
@@ -22,9 +22,7 @@ article.product {
       }
     }
   }
-  section.samples {
-    div.sample-group {
-      margin-top: 15px;
-    }
+  h2 {
+    margin-bottom: 25px;
   }
 }

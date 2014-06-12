@@ -10,8 +10,6 @@
   </section>
   <section class="details col-sm-4">
     <dl class="dl-horizontal">
-      <%= dl_item("Title", @product.title) %>
-      <%= dl_item("Code", @product.code) %>
       <%= dl_item("Actresses", @product.actresses) %>
       <%= dl_item("Actress Types", @product.actress_types) %>
       <%= dl_item("Directors", @product.directors) %>
@@ -24,7 +22,7 @@
       <%= dl_item("Release Date", @product.release_date) %>
       <%= dl_item("Maker", @product.maker) %>
       <%- if @product.page %>
-        <dt>Page</dt>
+        <dt>Source Page</dt>
         <dd>
           <%= link_to @product.page, target: "_blank" do %>
             <span class="glyphicon glyphicon-new-window"></span>
