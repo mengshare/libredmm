@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 52a80298af754a1497f18189303f733c10af1e64
+  revision: c3b7842b1767174b79f76a7837092324a1007781
   branch: develop
   specs:
     opendmm (0.0.1)
@@ -81,7 +81,7 @@ GEM
     json (1.8.1)
     kgio (2.9.2)
     libv8 (3.16.14.3)
-    listen (2.7.7)
+    listen (2.7.8)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
