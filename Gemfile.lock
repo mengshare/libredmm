@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 1c836c1b2eb109b034c4635668579f7ef9cc6685
+  revision: 6eef5888a272ff955f5a2bf61796cde63ed8b6a3
   branch: develop
   specs:
     opendmm (0.0.1)
@@ -165,7 +165,7 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.0)
+    uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicorn (4.8.3)
