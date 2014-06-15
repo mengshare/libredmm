@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @admin_exceptions.each do |admin_exception| %>
+      <% @exceptions.each do |exception| %>
         <tr>
-          <td><%= admin_exception.uri %></td>
-          <td><%= admin_exception.message %></td>
-          <td><%= link_to 'Show', admin_exception %></td>
+          <td><%= exception.uri %></td>
+          <td><%= exception.message %></td>
+          <td><%= link_to 'Show', exception %></td>
         </tr>
       <% end %>
     </tbody>

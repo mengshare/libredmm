@@ -1,9 +1,9 @@
 class Admin::ExceptionsController < ApplicationController
-  before_action :set_admin_exception, only: [:show, :edit, :update, :destroy]
+  before_action :set_exception, only: :show
 
   # GET /admin/exceptions
   def index
-    @admin_exceptions = Admin::Exception.all
+    @exceptions = Admin::Exception.all
   end
 
   # GET /admin/exceptions/1
@@ -12,7 +12,7 @@ class Admin::ExceptionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_exception
-      @admin_exception = Admin::Exception.find(params[:id])
+    def set_exception
+      @exception = Admin::Exception.find(params[:id])
     end
 end

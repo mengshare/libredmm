@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :destroy]
+
   def show
-    @product = Product.fuzzy_find(params[:id])
     unless @product
       details = OpenDMM.search(params[:id])
       @product = Product.create!(details) if details
@@ -10,4 +11,14 @@ class ProductsController < ApplicationController
     Admin::Exception.create(uri: request.path, message: e.message, backtrace: e.backtrace)
     render :notfound
   end
+
+  def destroy
+    @product.refresh!
+    redirect_to @product
+  end
+
+  private
+    def set_product
+      @product = Product.fuzzy_find(params[:id])
+    end
 end

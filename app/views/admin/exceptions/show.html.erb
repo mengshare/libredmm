@@ -6,17 +6,17 @@
     </tr>
     <tr>
       <th>URI</th>
-      <td><%= @admin_exception.uri %></td>
+      <td><%= @exception.uri %></td>
     </tr>
     <tr>
       <th>Message</th>
-      <td><%= @admin_exception.message %></td>
+      <td><%= @exception.message %></td>
     </tr>
     <tr>
       <th>Backtrace</th>
       <td>
         <ul class='list-unstyled'>
-          <%- @admin_exception.backtrace.each do |location| %>
+          <%- @exception.backtrace.each do |location| %>
           <li><%= location %></li>
           <% end %>
         </ul>
