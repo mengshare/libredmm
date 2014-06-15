@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   serialize :actresses,     Array
   serialize :actress_types, Array
+  serialize :categories,    Array
   serialize :directors,     Array
   serialize :genres,        Array
   serialize :sample_images, Array
