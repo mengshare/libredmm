@@ -8,4 +8,11 @@ class Product < ActiveRecord::Base
   serialize :scenes,        Array
 
   validates :code, presence: true, uniqueness: true
+
+  before_save do self.code.upcase! end
+
+  def self.fuzzy_find(code)
+    Product.find_by(code: code.upcase) ||
+    Product.find_by(code: code.remove(/[-_]/).upcase)
+  end
 end
