@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613055007) do
+ActiveRecord::Schema.define(version: 20140615123741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_exceptions", force: true do |t|
+    t.string   "uri"
+    t.string   "message"
+    t.text     "backtrace"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.text     "actresses"
@@ -39,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140613055007) do
     t.string   "subtitle"
     t.string   "theme"
     t.string   "thumbnail_image"
+    t.string   "categories"
   end
 
   add_index "products", ["code"], name: "index_products_on_code", using: :btree

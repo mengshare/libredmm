@@ -1,0 +1,21 @@
+<article class="row">
+  <h1>Exceptions</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>URI</th>
+        <th>Message</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_exceptions.each do |admin_exception| %>
+        <tr>
+          <td><%= admin_exception.uri %></td>
+          <td><%= admin_exception.message %></td>
+          <td><%= link_to 'Show', admin_exception %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>
