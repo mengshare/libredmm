@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.refresh!
-    redirect_to @product
+    redirect_to @product, info: 'Error reported. Thanks!'
   end
 
   private

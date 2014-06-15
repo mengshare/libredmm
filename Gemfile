@@ -6,6 +6,7 @@ gem 'pg'
 
 gem 'sass-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'

@@ -1,51 +1,112 @@
-<article class="product row">
-  <header class="col-sm-12">
+<article class='product row'>
+  <header class='col-sm-12'>
     <h1>
       <span><%= @product.code %></span>
       <span><%= @product.title %></span>
     </h1>
   </header>
-  <section class="cover col-sm-8">
-    <%= image_link_to @product.cover_image, class: "img-rounded" %>
+  <section class='cover col-sm-8'>
+    <%= image_link_to @product.cover_image, {}, class: 'img-rounded' %>
   </section>
-  <section class="details col-sm-4">
-    <dl class="dl-horizontal">
-      <%= dl_item("Actresses", @product.actresses) %>
-      <%= dl_item("Actress Types", @product.actress_types) %>
-      <%= dl_item("Directors", @product.directors) %>
-      <%= dl_item("Brand", @product.brand) %>
-      <%= dl_item("Genres", @product.genres) %>
-      <%= dl_item("Label", @product.label) %>
-      <%= dl_item("Scenes", @product.scenes) %>
-      <%= dl_item("Series", @product.series) %>
-      <%= dl_item("Movie Length", @product.movie_length) %>
-      <%= dl_item("Release Date", @product.release_date) %>
-      <%= dl_item("Maker", @product.maker) %>
+  <section class='details col-sm-4'>
+    <dl class='dl-horizontal'>
+      <%- if @product.actresses.present? %>
+        <dt>Actresses</dt>
+        <dd><ul class='list-unstyled'>
+          <%- @product.actresses.each do |actress| %>
+            <li>
+              <%= icon('female') %>
+              <%= actress %>
+            </li>
+          <% end %>
+        </ul></dd>
+      <% end %>
+      <%= dl_item('Actress Types', @product.actress_types) %>
+      <%- if @product.directors.present? %>
+        <dt>Directors</dt>
+        <dd><ul class='list-unstyled'>
+          <%- @product.directors.each do |director| %>
+            <li>
+              <%= icon('male') %>
+              <%= director %>
+            </li>
+          <% end %>
+        </ul></dd>
+      <% end %>
+      <%= dl_item('Brand', @product.brand) %>
+      <%- if @product.genres.present? %>
+        <dt>Genres</dt>
+        <dd><ul class='list-unstyled'>
+          <%- @product.genres.each do |genre| %>
+            <li>
+              <%= icon('bookmark-o') %>
+              <%= genre %>
+            </li>
+          <% end %>
+        </ul></dd>
+      <% end %>
+      <%- if @product.label %>
+        <dt>Label</dt>
+        <dd>
+          <%= icon('bookmark') %>
+          <%= @product.label %>
+        </dd>
+      <% end %>
+      <%= dl_item('Scenes', @product.scenes) %>
+      <%- if @product.series %>
+        <dt>Series</dt>
+        <dd>
+          <%= icon('folder') %>
+          <%= @product.series %>
+        </dd>
+      <% end %>
+      <%- if @product.movie_length %>
+        <dt>Movie Length</dt>
+        <dd>
+          <%= icon('clock-o') %>
+          <%= distance_of_time(@product.movie_length) %>
+        </dd>
+      <% end %>
+      <%- if @product.release_date %>
+        <dt>Release Date</dt>
+        <dd>
+          <%= icon('calendar') %>
+          <%= @product.release_date %>
+        </dd>
+      <% end %>
+      <%- if @product.maker %>
+        <dt>Maker</dt>
+        <dd>
+          <%= icon('suitcase') %>
+          <%= @product.maker %>
+        </dd>
+      <% end %>
       <%- if @product.page %>
         <dt>Source Page</dt>
         <dd>
-          <%= link_to @product.page, target: "_blank" do %>
-            <span class="glyphicon glyphicon-new-window"></span>
+          <%= link_to @product.page, target: '_blank' do %>
+            <%= icon('external-link-square') %>
+            <%= URI(@product.page).host %>
           <% end %>
         </dd>
       <%- end %>
     </dl>
   </section>
-  <section class="description col-sm-12">
+  <section class='description col-sm-12'>
     <h2>Description</h2>
     <p><%= @product.description %></p>
   </section>
-  <section class="samples col-sm-12">
+  <section class='samples col-sm-12'>
     <h2>Sample Images</h2>
     <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
-      <div class="sample-group col-sm-12 row">
+      <div class='sample-group col-sm-12 row'>
         <%- group.each do |image| %>
-          <%= image_link_to image, class: "img-thumbnail col-sm-2" %>
+          <%= image_link_to image, class: 'thumbnail col-sm-2' %>
         <%- end %>
       </div>
     <%- end %>
   </section>
-  <footer class="actions col-sm-12">
+  <footer class='col-sm-12'>
     <%= link_to 'Report error', product_path(@product), method: :delete, class: 'btn btn-danger' %>
   </footer>
 </article>

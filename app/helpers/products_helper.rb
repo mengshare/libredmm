@@ -1,7 +1,7 @@
 module ProductsHelper
-  def image_link_to(image, options = {})
-    link_to image do
-      image_tag image, options
+  def image_link_to(image, link_options = {}, image_options = {})
+    link_to image, link_options do
+      image_tag image, image_options
     end
   end
 
