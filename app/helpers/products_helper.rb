@@ -5,17 +5,19 @@ module ProductsHelper
     end
   end
 
-  def dl_item(term, description)
+  def dl_item(term, description, icon)
     return nil if description.blank?
     case description
     when Array
-      description = content_tag(:ul, class: "list-inline") do
+      description = content_tag(:ul, class: "list-unstyled") do
         description.map do |item|
-          content_tag(:li, item)
+          content_tag(:li) do
+            self.icon(icon) + " " + item
+          end
         end.join.html_safe
       end
-    when Fixnum
-      description = distance_of_time(description)
+    else
+      description = self.icon(icon) + " " + description
     end
     (content_tag(:dt, term) + content_tag(:dd, description)).html_safe
   end
