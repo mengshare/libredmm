@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615202210) do
+ActiveRecord::Schema.define(version: 20140616004008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140615202210) do
     t.string   "theme"
     t.string   "thumbnail_image"
     t.string   "categories"
+    t.string   "boobs"
   end
 
   add_index "products", ["code"], name: "index_products_on_code", using: :btree

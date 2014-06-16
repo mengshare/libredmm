@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 24cdbbd3c87555a2bb8d46db779e1922497a8297
+  revision: b4b30ca59528f5765803a702d1f90712570cc49c
   branch: develop
   specs:
     opendmm (0.0.1)
