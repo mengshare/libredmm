@@ -24,7 +24,7 @@
       <%= dl_item('Series', @product.series, 'folder') %>
       <%= dl_item('Theme', @product.theme, 'bookmark') %>
 
-      <%= dl_item('Movie Length', distance_of_time(@product.movie_length), 'clock-o') %>
+      <%= dl_item('Movie Length', distance_of_time(@product.movie_length), 'clock-o') if @product.movie_length%>
       <%= dl_item('Release Date', @product.release_date, 'calendar') %>
 
       <%= dl_item('Maker', @product.maker, 'suitcase') %>
