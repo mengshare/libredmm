@@ -10,13 +10,18 @@
 <body>
   <nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
     <div class='container'>
-      <a class='logo navbar-brand' href='/'>LibreDMM</a>
-      <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left col-sm-12' do %>
+      <div class='navbar-header'>
+        <a class='logo navbar-brand' href='/'>LibreDMM</a>
+      </div>
+      <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left' do %>
         <div class='form-group'>
           <%= text_field_tag 'q', nil, class: 'form-control input-sm'%>
         </div>
         <%= submit_tag 'Search', class: 'btn btn-success btn-sm' %>
       <% end %>
+      <ul class='nav navbar-nav navbar-right'>
+        <%= yield :navbar_links %>
+      </ul>
     </div>
   </nav>
   <div class='flash container'>

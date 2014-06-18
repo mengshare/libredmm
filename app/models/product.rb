@@ -20,7 +20,6 @@ class Product < ActiveRecord::Base
   end
 
   def refresh!
-    return if updated_at >= 1.hour.ago
     @details = OpenDMM.search(code)
     update!(@details)
   end
