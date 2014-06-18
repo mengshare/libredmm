@@ -28,7 +28,7 @@ group :development do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-livereload', require: false
-  gem 'guard-unicorn', require: false
+  gem 'guard-rails'
   gem 'spring'
 end
 
