@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/opendmm/opendmm.git
-  revision: 2cc3c6731eeaf612f1930524da229bce138b61c6
+  revision: 999e90d576d4d052709745b6e573087475fb1c31
   branch: develop
   specs:
     opendmm (0.0.1)
@@ -74,7 +74,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
-    jbuilder (2.1.0)
+    jbuilder (2.1.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -94,7 +94,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.4)
+    minitest (5.3.5)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     newrelic_rpm (3.8.1.221)
