@@ -13,4 +13,6 @@ guard 'livereload' do
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
 end
 
-guard :unicorn, :daemonize => true
+guard :unicorn, :daemonize => true do
+  watch(/^config\/.+\.rb$/)
+end
