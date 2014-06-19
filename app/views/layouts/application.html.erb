@@ -3,31 +3,15 @@
 <head>
   <title>LibreDMM</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    params[:controller], media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
-    <div class='container'>
-      <div class='navbar-header'>
-        <a class='logo navbar-brand' href='/'>LibreDMM</a>
-      </div>
-      <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left' do %>
-        <div class='form-group'>
-          <%= text_field_tag 'q', nil, class: 'form-control input-sm'%>
-        </div>
-        <%= submit_tag 'Search', class: 'btn btn-success btn-sm' %>
-      <% end %>
-      <ul class='nav navbar-nav navbar-right'>
-        <%= yield :navbar_links %>
-      </ul>
-    </div>
-  </nav>
+  <%= render "layouts/navbar" %>
   <div class='flash container'>
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) %>
-        <div class='alert alert-<%= name.to_s %>'>
+        <div class='alert alert-<%= bootstrap_class_for_flash(name) %>'>
           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
           <%= content_tag :div, msg %>
         </div>

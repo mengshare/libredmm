@@ -11,27 +11,29 @@
   </section>
   <section class='details col-sm-4'>
     <dl class='dl-horizontal'>
-      <%= dl_item('Actresses', @product.actresses, 'female') %>
-      <%= dl_item('Directors', @product.directors, 'male') %>
+      <%= product_spec('Actresses', @product.actresses, 'female') %>
+      <%= product_spec('Directors', @product.directors, 'male') %>
 
-      <%= dl_item('Actress Types', @product.actress_types, 'bookmark-o') %>
-      <%= dl_item('Boobs', @product.boobs, 'dot-circle-o') %>
-      <%= dl_item('Brand', @product.brand, 'bookmark') %>
-      <%= dl_item('Categories', @product.categories, 'folder-o') %>
-      <%= dl_item('Genres', @product.genres, 'bookmark-o') %>
-      <%= dl_item('Label', @product.label, 'bookmark') %>
-      <%= dl_item('Scenes', @product.scenes, 'bookmark-o') %>
-      <%= dl_item('Series', @product.series, 'folder') %>
-      <%= dl_item('Theme', @product.theme, 'bookmark') %>
+      <%= product_spec('Actress Types', @product.actress_types, 'tags') %>
+      <%= product_spec('Boobs', @product.boobs, 'dot-circle-o') %>
+      <%= product_spec('Brand', @product.brand, 'tag') %>
+      <%= product_spec('Categories', @product.categories, 'folder-o') %>
+      <%= product_spec('Genres', @product.genres, 'tags') %>
+      <%= product_spec('Label', @product.label, 'tag') %>
+      <%= product_spec('Scenes', @product.scenes, 'tags') %>
+      <%= product_spec('Series', @product.series, 'folder') %>
+      <%= product_spec('Theme', @product.theme, 'tag') %>
 
-      <%= dl_item('Movie Length', distance_of_time(@product.movie_length), 'clock-o') if @product.movie_length%>
-      <%= dl_item('Release Date', @product.release_date, 'calendar') %>
+      <%= product_spec('Movie Length',
+                       distance_of_time(@product.movie_length), 'clock-o'
+                      ) if @product.movie_length %>
+      <%= product_spec('Release Date', @product.release_date, 'calendar') %>
 
-      <%= dl_item('Maker', @product.maker, 'suitcase') %>
-      <%= dl_item('Source Page',
-                  link_to(URI(@product.page).host, @product.page, target: '_blank'),
-                  'suitcase') %>
-      </dl>
+      <%= product_spec('Maker', @product.maker, 'suitcase') %>
+      <%= product_spec('Source Page', 'suitcase') do %>
+        <% link_to(URI(@product.page).host, @product.page, target: '_blank') %>
+      <% end %>
+    </dl>
   </section>
   <section class='description col-sm-12'>
     <h2>Description</h2>

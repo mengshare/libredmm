@@ -1,6 +1,9 @@
 @import "bootstrap";
 @import "bootstrap/theme";
 @import "font-awesome";
+@import "pages";
+@import "products";
+@import "devise";
 @import url("//fonts.googleapis.com/css?family=Special+Elite");
 
 body {
@@ -9,4 +12,13 @@ body {
 
 .logo {
   font-family: 'Special Elite', 'Papyrus', cursive;
+}
+
+legend {
+  padding-top: 20px;
+}
+
+input.form-control[type='checkbox'] {
+  border: 0;
+  box-shadow: none;
 }
