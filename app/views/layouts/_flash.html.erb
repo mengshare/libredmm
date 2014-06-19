@@ -1,0 +1,8 @@
+<div class='flash'>
+  <% flash.each do |name, msg| %>
+    <div class='alert alert-<%= bootstrap_class_for_flash(name) %>'>
+      <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+      <%= content_tag :div, msg %>
+    </div>
+  <% end %>
+</div>
