@@ -56,5 +56,10 @@
 </article>
 
 <% content_for :navbar_links do %>
-  <li><%= link_to 'Report error', product_path(@product), method: :delete %></li>
+  <li>
+    <%= link_to product_path(@product), method: :delete do %>
+      <%= icon_fa 'paper-plane' %>
+      Report Error
+    <% end %>
+  </li>
 <% end %>
