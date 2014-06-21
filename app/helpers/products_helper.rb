@@ -1,31 +1,25 @@
 module ProductsHelper
-  def image_link_to(image, options = {})
-    link_to image do
-      image_tag image, options
+  def image_link_to(image, link_options = {}, image_options = {})
+    link_to image, link_options do
+      image_tag image, image_options
     end
   end
 
-  def dl_item(term, description)
+  def product_spec(term, description = nil, icon = nil, &block)
+    description, icon = yield, description if block_given?
+    return nil if description.blank?
     case description
-    when String
-      return nil if description.blank?
-      dd = content_tag(:dd, description)
     when Array
-      return nil if description.empty?
-      dd = content_tag(:dd) do
-        content_tag(:ul, class: "list-inline") do
-          description.map do |item|
-            content_tag(:li, item)
-          end.join.html_safe
-        end
+      description = content_tag(:ul, class: 'list-unstyled') do
+        description.map do |item|
+          content_tag(:li) do
+            icon_fa(icon, item)
+          end
+        end.join.html_safe
       end
-    when Date
-      dd = content_tag(:dd, description)
-    when Fixnum
-      dd = content_tag(:dd, distance_of_time(description))
     else
-      return nil
+      description = icon_fa(icon, description)
     end
-    [content_tag(:dt, term), dd].join.html_safe
+    (content_tag(:dt, term) + content_tag(:dd, description)).html_safe
   end
 end

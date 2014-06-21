@@ -2,25 +2,43 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-gem 'sqlite3'
+# Model
+gem 'pg'
+gem 'opendmm'
 
+# View
+#   CSS
 gem 'sass-rails'
 gem 'bootstrap-sass'
-
+gem 'font-awesome-sass'
+#   JavaScript
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'
-
-gem 'opendmm', path: '../opendmm'
+#   Helper
+gem 'simple_form'
 gem 'dotiw'
+
+# Controller
+gem 'devise'
+
+# Server
+gem 'unicorn'
 
 group :development do
   gem 'guard'
+  gem 'guard-bundler', require: false
+  gem 'guard-livereload', require: false
   gem 'guard-rails'
   gem 'spring'
 end
 
-gem 'unicorn'
+group :production do
+  gem 'rails_12factor'
+  gem 'newrelic_rpm'
+end
+
+ruby '2.1.2'

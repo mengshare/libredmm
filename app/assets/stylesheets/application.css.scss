@@ -1,42 +1,24 @@
 @import "bootstrap";
 @import "bootstrap/theme";
+@import "font-awesome";
+@import "pages";
+@import "products";
+@import "devise";
 @import url("//fonts.googleapis.com/css?family=Special+Elite");
 
-p.logo-lg {
+body {
+  padding-top: 70px;
+}
+
+.logo {
   font-family: 'Special Elite', 'Papyrus', cursive;
-  font-size: 5em;
-  margin-top: 100px;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
-article form.search-box {
-  text-align: center;
+legend {
+  padding-top: 20px;
 }
 
-article.product {
-  header {
-    margin-top: 60px;
-    margin-bottom: 30px;
-  }
-  section.cover {
-    img {
-      width: 100%;
-    }
-  }
-  section.details {
-    padding-top: 15px;
-    dl.dl-horizontal {
-      dt {
-        width: 100px;
-      }
-      dd {
-        margin-left: 110px;
-        ul {
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
+input.form-control[type='checkbox'] {
+  border: 0;
+  box-shadow: none;
 }
-

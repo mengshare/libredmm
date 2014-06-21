@@ -1,0 +1,32 @@
+article.product {
+  header {
+    margin-bottom: 30px;
+  }
+  section.cover {
+    img {
+      margin-bottom: 15px;
+      width: 100%;
+    }
+  }
+  section.details {
+    padding-top: 10px;
+    dl.dl-horizontal {
+      dt {
+        width: 100px;
+      }
+      dd {
+        margin-left: 110px;
+        ul {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  h2 {
+    margin-bottom: 25px;
+  }
+}

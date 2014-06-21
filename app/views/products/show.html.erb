@@ -1,37 +1,56 @@
-<article class="product">
-  <header class="col-sm-12">
-    <h1><%= @product.title %></h1>
+<article class='product row'>
+  <header class='col-sm-12'>
+    <h1>
+      <span><%= @product.code %></span>
+      <span><%= @product.title %></span>
+      <small><%= @product.subtitle %></small>
+    </h1>
   </header>
-  <section class="cover col-sm-8">
-    <%= image_link_to @product.cover_image, class: "img-rounded" %>
+  <section class='cover col-sm-8'>
+    <%= image_link_to @product.cover_image, {}, class: 'img-rounded' %>
   </section>
-  <section class="details col-sm-4">
-    <dl class="dl-horizontal">
-      <%= dl_item("Actresses", @product.actresses.keys) %>
-      <%= dl_item("Actress Types", @product.actress_types) %>
-      <%= dl_item("Brand", @product.brand) %>
-      <%= dl_item("Directors", @product.directors) %>
-      <%= dl_item("Genres", @product.genres) %>
-      <%= dl_item("Label", @product.label) %>
-      <%= dl_item("Maker", @product.maker) %>
-      <%= dl_item("Movie Length", @product.movie_length) %>
-      <%= dl_item("Release Date", @product.release_date) %>
-      <%= dl_item("Scenes", @product.scenes) %>
-      <%= dl_item("Series", @product.series) %>
+  <section class='details col-sm-4'>
+    <dl class='dl-horizontal'>
+      <%= product_spec('Actresses', @product.actresses, 'female') %>
+      <%= product_spec('Directors', @product.directors, 'male') %>
+
+      <%= product_spec('Actress Types', @product.actress_types, 'tags') %>
+      <%= product_spec('Boobs', @product.boobs, 'dot-circle-o') %>
+      <%= product_spec('Brand', @product.brand, 'tag') %>
+      <%= product_spec('Categories', @product.categories, 'folder-o') %>
+      <%= product_spec('Genres', @product.genres, 'tags') %>
+      <%= product_spec('Label', @product.label, 'tag') %>
+      <%= product_spec('Scenes', @product.scenes, 'tags') %>
+      <%= product_spec('Series', @product.series, 'folder') %>
+      <%= product_spec('Theme', @product.theme, 'tag') %>
+
+      <%= product_spec('Movie Length',
+                       distance_of_time(@product.movie_length), 'clock-o'
+                      ) if @product.movie_length %>
+      <%= product_spec('Release Date', @product.release_date, 'calendar') %>
+
+      <%= product_spec('Maker', @product.maker, 'suitcase') %>
+      <%= product_spec('Source Page', 'suitcase') do %>
+        <% link_to(URI(@product.page).host, @product.page, target: '_blank') %>
+      <% end %>
     </dl>
   </section>
-  <section class="description col-sm-12">
+  <section class='description col-sm-12'>
     <h2>Description</h2>
     <p><%= @product.description %></p>
   </section>
-  <section class="samples col-sm-12">
+  <section class='samples col-sm-12'>
     <h2>Sample Images</h2>
     <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
-      <div class="col-sm-12">
+      <div class='sample-group col-sm-12 row'>
         <%- group.each do |image| %>
-          <%= image_link_to image, class: "img-thumbnail col-sm-2" %>
+          <%= image_link_to image, class: 'thumbnail col-sm-2' %>
         <%- end %>
       </div>
     <%- end %>
   </section>
 </article>
+
+<% content_for :navbar_links do %>
+  <li><%= link_to 'Report error', product_path(@product), method: :delete %></li>
+<% end %>
