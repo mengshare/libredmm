@@ -41,7 +41,7 @@
       <p><%= @product.description %></p>
     </section>
   <% end %>
-  <% if @product.sample_images %>
+  <% if @product.sample_images.present? %>
     <section class='samples col-sm-12'>
       <h2>Sample Images</h2>
       <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
