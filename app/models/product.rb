@@ -1,10 +1,14 @@
 class Product < ActiveRecord::Base
-  before_validation do self.code.upcase! end
-  validates :code, presence: true, uniqueness: true
-
-  def self.fuzzy_find(code)
-    Product.find_by(code: code.upcase) ||
-    Product.find_by(code: code.remove(/[-_]/).upcase)
+  def self.search(query)
+    product = self.where("? = ANY (aliases)", query).take
+    return product if product
+    details = OpenDMM.search(query)
+    return nil unless details
+    product = Product.find_by_code(details[:code]) ||
+              Product.new(details)
+    product.aliases << query
+    product.aliases_will_change!
+    product.save ? product : nil
   end
 
   def to_param

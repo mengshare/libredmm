@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621223121) do
+ActiveRecord::Schema.define(version: 20140621224120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140621223121) do
     t.string   "genres",          default: [], array: true
     t.string   "sample_images",   default: [], array: true
     t.string   "scenes",          default: [], array: true
+    t.string   "aliases",         default: [], array: true
   end
 
   add_index "products", ["code"], name: "index_products_on_code", unique: true, using: :btree
