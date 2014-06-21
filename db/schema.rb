@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618103046) do
+ActiveRecord::Schema.define(version: 20140621224120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,21 +25,15 @@ ActiveRecord::Schema.define(version: 20140618103046) do
   end
 
   create_table "products", force: true do |t|
-    t.text     "actresses"
-    t.text     "actress_types"
     t.string   "brand"
     t.string   "code"
     t.string   "cover_image"
     t.text     "description"
-    t.text     "directors"
-    t.text     "genres"
     t.string   "label"
     t.string   "maker"
     t.integer  "movie_length"
     t.string   "page"
     t.date     "release_date"
-    t.text     "sample_images"
-    t.text     "scenes"
     t.string   "series"
     t.string   "title"
     t.datetime "created_at"
@@ -47,8 +41,15 @@ ActiveRecord::Schema.define(version: 20140618103046) do
     t.string   "subtitle"
     t.string   "theme"
     t.string   "thumbnail_image"
-    t.string   "categories"
     t.string   "boobs"
+    t.string   "actresses",       default: [], array: true
+    t.string   "actress_types",   default: [], array: true
+    t.string   "categories",      default: [], array: true
+    t.string   "directors",       default: [], array: true
+    t.string   "genres",          default: [], array: true
+    t.string   "sample_images",   default: [], array: true
+    t.string   "scenes",          default: [], array: true
+    t.string   "aliases",         default: [], array: true
   end
 
   add_index "products", ["code"], name: "index_products_on_code", unique: true, using: :btree

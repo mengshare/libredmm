@@ -1,4 +1,7 @@
+$dt_width: 100px;
+
 article.product {
+  margin-bottom: 30px;
   header {
     margin-bottom: 30px;
   }
@@ -9,22 +12,17 @@ article.product {
     }
   }
   section.details {
-    padding-top: 10px;
     dl.dl-horizontal {
       dt {
-        width: 100px;
+        width: $dt_width;
       }
       dd {
-        margin-left: 110px;
+        margin-left: $dt_width + 10px;
         ul {
           margin-bottom: 0;
         }
       }
     }
-  }
-  footer {
-    padding-top: 25px;
-    padding-bottom: 25px;
   }
   h2 {
     margin-bottom: 25px;

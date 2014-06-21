@@ -6,8 +6,16 @@
 @import "devise";
 @import url("//fonts.googleapis.com/css?family=Special+Elite");
 
+$footer_height: 60px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding-top: 70px;
+  margin-bottom: $footer_height;
 }
 
 .logo {
@@ -21,4 +29,14 @@ legend {
 input.form-control[type='checkbox'] {
   border: 0;
   box-shadow: none;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer_height;
+  background-color: #f5f5f5;
+  line-height: $footer_height;
+  text-align: center;
 }
