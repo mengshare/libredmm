@@ -2,26 +2,30 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+# Model
 gem 'pg'
+gem 'opendmm'
 
+# View
+#   CSS
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
-
+#   JavaScript
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'
-
-gem 'opendmm', git: 'https://github.com/opendmm/opendmm.git', branch: :develop
-
+#   Helper
 gem 'simple_form'
 gem 'dotiw'
 
+# Controller
 gem 'devise'
 
+# Server
 gem 'unicorn'
 
 group :development do
