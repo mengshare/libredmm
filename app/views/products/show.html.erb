@@ -35,20 +35,24 @@
       <% end %>
     </dl>
   </section>
-  <section class='description col-sm-12'>
-    <h2>Description</h2>
-    <p><%= @product.description %></p>
-  </section>
-  <section class='samples col-sm-12'>
-    <h2>Sample Images</h2>
-    <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
-      <div class='sample-group col-sm-12 row'>
-        <%- group.each do |image| %>
-          <%= image_link_to image, class: 'thumbnail col-sm-2' %>
-        <%- end %>
-      </div>
-    <%- end %>
-  </section>
+  <% if @product.description %>
+    <section class='description col-sm-12'>
+      <h2>Description</h2>
+      <p><%= @product.description %></p>
+    </section>
+  <% end %>
+  <% if @product.sample_images %>
+    <section class='samples col-sm-12'>
+      <h2>Sample Images</h2>
+      <%- @product.sample_images.in_groups_of(6, false).each do |group| %>
+        <div class='sample-group col-sm-12 row'>
+          <%- group.each do |image| %>
+            <%= image_link_to image, class: 'thumbnail col-sm-2' %>
+          <%- end %>
+        </div>
+      <%- end %>
+    </section>
+  <% end %>
 </article>
 
 <% content_for :navbar_links do %>
