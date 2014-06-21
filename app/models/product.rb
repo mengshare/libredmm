@@ -1,12 +1,4 @@
 class Product < ActiveRecord::Base
-  serialize :actresses,     Array
-  serialize :actress_types, Array
-  serialize :categories,    Array
-  serialize :directors,     Array
-  serialize :genres,        Array
-  serialize :sample_images, Array
-  serialize :scenes,        Array
-
   before_validation do self.code.upcase! end
   validates :code, presence: true, uniqueness: true
 
