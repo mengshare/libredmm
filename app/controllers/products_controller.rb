@@ -6,6 +6,10 @@ class ProductsController < ApplicationController
     if (user_signed_in?)
       @review = @product.reviews.find_by(user: current_user)
     end
+    respond_to do |format|
+      format.html
+      format.json { render json: @product, except: [:id, :created_at, :updated_at] }
+    end
   end
 
   def destroy
