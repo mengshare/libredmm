@@ -11,10 +11,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-    render :notfound unless @product
-    respond_to do |format|
-      format.html
-      format.json { render json: @product, except: [:id, :created_at, :updated_at] }
+    if @product
+      respond_to do |format|
+        format.html
+        format.json { render json: @product, except: [:id, :created_at, :updated_at] }
+      end
+    else
+      render :notfound
     end
   end
 
