@@ -1,64 +1,72 @@
 <nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
-  <div class='container'>
+  <div class='container-fluid'>
     <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#navbar-top'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
       <a class='logo navbar-brand' href='/'>LibreDMM</a>
     </div>
-    <% unless request.url == root_url %>
-      <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left' do %>
-        <div class='form-group'>
-          <%= text_field_tag 'q', nil, class: 'form-control input-sm'%>
-        </div>
-        <%= submit_tag 'Search', class: 'btn btn-success btn-sm' %>
-        <%= link_to 'Explore', products_path, class: 'btn btn-primary btn-sm' %>
+    <div class='collapse navbar-collapse' id='navbar-top'>
+      <% unless request.url == root_url %>
+        <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left' do %>
+          <div class='form-group'>
+            <%= text_field_tag 'q', nil, class: 'form-control input-sm'%>
+          </div>
+          <%= submit_tag 'Search', class: 'btn btn-success btn-sm' %>
+          <%= link_to 'Explore', products_path, class: 'btn btn-primary btn-sm' %>
+        <% end %>
       <% end %>
-    <% end %>
-    <ul class='nav navbar-nav navbar-right'>
-      <%= yield :navbar_links %>
-      <% if user_signed_in? %>
-        <li class='dropdown'>
-          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-            <%= icon_fa 'user', current_user.email %>
-            <b class='caret'></b>
-          </a>
-          <ul class='dropdown-menu'>
-            <li>
-              <%= link_to products_path(reviewed: true) do %>
-                <%= icon_fa 'eye', 'Reviews' %>
-              <% end %>
-            </li>
-            <li class='divider'></li>
-            <li>
-              <%= link_to edit_user_registration_path do %>
-                <%= icon_fa 'edit', 'Edit profile' %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <%= icon_fa 'sign-out', 'Sign out' %>
-              <% end %>
-            </li>
-          </ul>
-        </li>
-      <% else %>
-        <li class='dropdown'>
-          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-            <%= icon_fa 'user', 'Anonymous' %>
-            <b class='caret'></b>
-          </a>
-          <ul class='dropdown-menu'>
-            <li>
-              <%= link_to new_user_session_path do %>
-                <%= icon_fa 'sign-in', 'Sign in' %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_registration_path do %>
-                <%= icon_fa 'bolt', 'Sign up' %>
-              <% end %>
-            </li>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
+      <ul class='nav navbar-nav navbar-right'>
+        <%= yield :navbar_links %>
+        <% if user_signed_in? %>
+          <li class='dropdown'>
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+              <%= icon_fa 'user', current_user.email %>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li>
+                <%= link_to products_path(reviewed: true) do %>
+                  <%= icon_fa 'eye', 'Reviews' %>
+                <% end %>
+              </li>
+              <li class='divider'></li>
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <%= icon_fa 'edit', 'Edit profile' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= icon_fa 'sign-out', 'Sign out' %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li class='dropdown'>
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+              <%= icon_fa 'user', 'Anonymous' %>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li>
+                <%= link_to new_user_session_path do %>
+                  <%= icon_fa 'sign-in', 'Sign in' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                  <%= icon_fa 'bolt', 'Sign up' %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
