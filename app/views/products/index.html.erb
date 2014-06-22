@@ -21,20 +21,25 @@
     <table class='table'>
       <thead>
         <tr>
-          <th class='col-sm-2'>Code</th>
-          <th class='col-sm-8'>Title</th>
-          <th class='col-sm-2'>Rating</th>
+          <th class='col-sm-1'>Code</th>
+          <th class='col-sm-6'>Title</th>
+          <th class='col-sm-1'>Actresses</th>
+          <th class='col-sm-1'>Rating</th>
         </tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <tr>
+          <%= content_tag :tr, class: ('success' if current_user_rating(product) >= 4) do %>
             <td><%= link_to product.code, product %></td>
             <td><%= link_to product.title, product %></td>
             <td>
+              <%= product.actresses.first %>
+              <%= '……' if product.actresses.size > 1 %>
+            </td>
+            <td>
               <%= render partial: 'rating', locals: { product: product } %>
             </td>
-          </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
