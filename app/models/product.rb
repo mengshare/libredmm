@@ -5,6 +5,8 @@ class Product < ActiveRecord::Base
   validates :code, :title, :thumbnail_image, :cover_image, presence: true
   validates :code, uniqueness: true
 
+  default_scope { order(code: :asc) }
+
   def self.search(query)
     product = self.where("? = ANY (aliases)", query.upcase).take
     return product if product
