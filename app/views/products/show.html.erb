@@ -5,11 +5,25 @@
       <span><%= @product.title %></span>
       <small><%= @product.subtitle %></small>
     </h1>
+    <% if user_signed_in? %>
+      <h3 class='rating'>
+        <% (1..5).each do |i| %>
+          <%= link_to product_create_rating_path(@product, i), method: :post do %>
+            <% if @review && @review.rating >= i %>
+              <%= icon_fa 'star' %>
+            <% else %>
+              <%= icon_fa 'star-o' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </h3>
+    <% end %>
   </header>
   <section class='cover col-sm-8'>
     <%= image_link_to @product.cover_image, {}, class: 'img-rounded' %>
   </section>
   <section class='details col-sm-4'>
+
     <dl class='dl-horizontal'>
       <%= product_spec('Actresses', @product.actresses, 'female') %>
       <%= product_spec('Directors', @product.directors, 'male') %>

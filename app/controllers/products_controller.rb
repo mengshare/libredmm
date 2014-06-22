@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
 
   def show
     render :notfound unless @product
+    if (user_signed_in?)
+      @review = @product.reviews.find_by(user: current_user)
+    end
   end
 
   def destroy

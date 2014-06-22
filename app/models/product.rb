@@ -1,4 +1,9 @@
 class Product < ActiveRecord::Base
+  has_many :reviews, class_name: 'ProductReview'
+  has_many :reviewed_users, through: :reviews, source: :user
+
+  validates :code, :title, :thumbnail_image, :cover_image, presence: true
+
   def self.search(query)
     product = self.where("? = ANY (aliases)", query).take
     return product if product

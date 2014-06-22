@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621224120) do
+ActiveRecord::Schema.define(version: 20140622004927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_exceptions", force: true do |t|
-    t.string   "uri"
-    t.string   "message"
-    t.text     "backtrace"
+  create_table "product_reviews", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
