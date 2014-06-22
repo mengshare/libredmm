@@ -6,15 +6,23 @@ class Product < ActiveRecord::Base
   validates :code, uniqueness: true
 
   def self.search(query)
-    product = self.where("? = ANY (aliases)", query).take
+    product = self.where("? = ANY (aliases)", query.upcase).take
     return product if product
     details = OpenDMM.search(query)
     return nil unless details
     product = Product.find_by_code(details[:code]) ||
               Product.new(details)
-    product.aliases << query
-    product.aliases_will_change!
-    product.save ? product : nil
+    product.register_alias(details[:code], query) ? product : nil
+  end
+
+  def register_alias(*names)
+    names.each do |name|
+      unless aliases.include? name.upcase
+        aliases << name.upcase
+        aliases_will_change!
+      end
+    end
+    save
   end
 
   def to_param
