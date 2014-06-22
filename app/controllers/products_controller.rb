@@ -17,7 +17,8 @@ class ProductsController < ApplicationController
         format.json { render json: @product, except: [:id, :created_at, :updated_at] }
       end
     else
-      render :notfound
+      logger.error "[NotFound] #{params[:id]}"
+      render :notfound, status: :not_found
     end
   end
 
