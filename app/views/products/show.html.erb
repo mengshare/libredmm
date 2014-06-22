@@ -7,15 +7,7 @@
     </h1>
     <% if user_signed_in? %>
       <h3 class='rating'>
-        <% (1..5).each do |i| %>
-          <%= link_to product_create_rating_path(@product, i), method: :post do %>
-            <% if @review && @review.rating >= i %>
-              <%= icon_fa 'star' %>
-            <% else %>
-              <%= icon_fa 'star-o' %>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= render partial: 'rating', locals: { product: @product } %>
       </h3>
     <% end %>
   </header>
@@ -72,8 +64,7 @@
 <% content_for :navbar_links do %>
   <li>
     <%= link_to product_path(@product), method: :delete do %>
-      <%= icon_fa 'paper-plane' %>
-      Report Error
+      <%= icon_fa 'paper-plane', 'Report Error' %>
     <% end %>
   </li>
 <% end %>

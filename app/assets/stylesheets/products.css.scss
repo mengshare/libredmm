@@ -2,13 +2,11 @@ $dt_width: 100px;
 
 article.product {
   margin-bottom: 30px;
+  a.rating {
+    text-decoration: none;
+  }
   header {
     margin-bottom: 20px;
-    h3.rating {
-      a {
-        text-decoration: none;
-      }
-    }
   }
   section.cover {
     img {

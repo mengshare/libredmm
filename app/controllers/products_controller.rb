@@ -1,11 +1,17 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
+  def index
+    if params[:reviewed]
+      authenticate_user!
+      @products = current_user.reviewed_products
+    else
+      @products = Product.all
+    end
+  end
+
   def show
     render :notfound unless @product
-    if (user_signed_in?)
-      @review = @product.reviews.find_by(user: current_user)
-    end
     respond_to do |format|
       format.html
       format.json { render json: @product, except: [:id, :created_at, :updated_at] }

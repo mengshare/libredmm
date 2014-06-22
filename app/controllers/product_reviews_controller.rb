@@ -5,7 +5,7 @@ class ProductReviewsController < ApplicationController
     user = User.first
     review = @product.reviews.find_or_create_by(user: user)
     review.rating = params[:rating]
-    redirect_to @product, alert: (review.save ? nil : 'Unknown Error')
+    redirect_to :back, alert: (review.save ? nil : 'Unknown Error')
   end
 
   private
