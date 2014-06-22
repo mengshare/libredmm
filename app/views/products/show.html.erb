@@ -1,8 +1,11 @@
+<% content_for :title do %>
+  <%= @product.code %> <%= @product.title %>
+<% end %>
+
 <article class='product row'>
   <header class='col-sm-12'>
     <h1>
-      <span><%= @product.code %></span>
-      <span><%= @product.title %></span>
+      <span><%= yield :title %></span>
       <small><%= @product.subtitle %></small>
     </h1>
     <% if user_signed_in? %>

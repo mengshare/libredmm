@@ -1,6 +1,11 @@
+<% content_for :title do %>
+  <%= 'Reviewed' if params[:reviewed] %>
+  Products
+<% end %>
+
 <article class='product row'>
   <header>
-    <h1>Products</h1>
+    <h1><%= yield :title %></h1>
   </header>
   <nav>
     <ul class='nav nav-tabs'>
