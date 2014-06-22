@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :reviewed_users, through: :reviews, source: :user
 
   validates :code, :title, :thumbnail_image, :cover_image, presence: true
+  validates :code, uniqueness: true
 
   def self.search(query)
     product = self.where("? = ANY (aliases)", query).take
@@ -21,7 +22,7 @@ class Product < ActiveRecord::Base
   end
 
   def refresh!
-    return false if updated_at >= 1.hour.ago
+    return false if updated_at >= 1.minute.ago
     @details = OpenDMM.search(code)
     return false unless @details
     attributes = @details
