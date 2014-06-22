@@ -1,15 +1,10 @@
 class ProductReviewsController < ApplicationController
-  before_action :set_product
+  before_action :authenticate_user!
 
   def create
-    user = User.first
-    review = @product.reviews.find_or_create_by(user: user)
+    @product = Product.search(params[:product_id])
+    review = @product.reviews.find_or_create_by(user: current_user)
     review.rating = params[:rating]
     redirect_to :back, alert: (review.save ? nil : 'Unknown Error')
   end
-
-  private
-    def set_product
-      @product = Product.search(params[:product_id])
-    end
 end
