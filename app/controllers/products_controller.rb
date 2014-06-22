@@ -9,9 +9,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.updated_at <= 1.hour.ago
-      @product.refresh!
-      redirect_to @product, info: 'Product information refreshed, if you still think there is any error, click Report Error again. Thanks!'
+    if @product.refresh!
+      redirect_to @product, info: "Product information refreshed, if you still believe it's wrong, click Report Error again. Thanks!"
     else
       redirect_to @product, success: 'Error reported. Thanks!'
     end
