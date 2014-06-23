@@ -1,6 +1,6 @@
 <% rating = current_user_rating(product) %>
 <% (1..5).each do |i| %>
-  <%= link_to product_create_rating_path(product, i), method: :post, class: 'rating' do %>
+  <%= link_to product_rate_path(product, i), method: :post, class: 'rating' do %>
     <% if rating >= i %>
       <%= icon_fa 'star' %>
     <% else %>
@@ -8,3 +8,8 @@
     <% end %>
   <% end %>
 <% end %>
+<small>
+  <%= link_to product_unrate_path(product), method: :delete, class: 'rating' do %>
+    <%= icon_fa 'trash-o' %>
+  <% end %>
+</small>
