@@ -35,7 +35,7 @@ class Product < ActiveRecord::Base
     return false if updated_at >= 1.minute.ago
     @details = OpenDMM.search(code)
     return false unless @details
-    attributes = @details
+    self.attributes = @details
     return false unless changed?
     save
   end
