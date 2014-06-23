@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
   def index
     if params[:reviewed]
       authenticate_user!
-      @products = current_user.reviewed_products
+      @products = current_user.reviewed_products.page params[:page]
     else
-      @products = Product.all
+      @products = Product.page params[:page]
     end
   end
 

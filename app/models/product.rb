@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   validates :code, uniqueness: true
 
   default_scope { order(code: :asc) }
+  paginates_per 50
 
   def self.search(query)
     product = self.where("? = ANY (aliases)", query.upcase).take

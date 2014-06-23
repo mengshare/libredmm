@@ -8,7 +8,7 @@
     <h1><%= yield :title %></h1>
   </header>
   <nav>
-    <ul class='nav nav-tabs'>
+    <ul class='nav nav-tabs pull-left'>
       <%= content_tag :li, class: ('active' unless params[:reviewed]) do %>
         <%= link_to 'All', products_path %>
       <% end %>
@@ -16,6 +16,7 @@
         <%= link_to 'Reviewed', products_path(reviewed: true) %>
       <% end %>
     </ul>
+    <%= paginate @products, theme: 'pull-right' %>
   </nav>
   <section>
     <table class='table'>

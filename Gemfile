@@ -19,8 +19,9 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'
 #   Helper
-gem 'simple_form'
 gem 'dotiw'
+gem 'kaminari'
+gem 'simple_form'
 
 # Controller
 gem 'devise'
