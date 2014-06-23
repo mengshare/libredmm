@@ -35,7 +35,14 @@
             <td><%= link_to product.title, product %></td>
             <td>
               <%= product.actresses.first %>
-              <%= '……' if product.actresses.size > 1 %>
+              <% if product.actresses.size > 1 %>
+                <%= content_tag :small,
+                                class: 'has-tooltip',
+                                data: { toggle: 'tooltip', placement: 'right' },
+                                title: product.actresses[1..-1].join("，") do %>
+                  + <%= product.actresses.size - 1 %>
+                <% end %>
+              <% end %>
             </td>
             <td>
               <%= render partial: 'rating', locals: { product: product } %>
