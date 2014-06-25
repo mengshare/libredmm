@@ -28,4 +28,17 @@ module ProductsHelper
     review = product.reviews.find_by(user: current_user)
     review ? review.rating : 0
   end
+
+  def table_row_class(rating)
+    case rating
+    when 1
+      'danger'
+    when 2
+      'warning'
+    when 4, 5
+      'success'
+    else
+      nil
+    end
+  end
 end

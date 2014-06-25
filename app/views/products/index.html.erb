@@ -30,7 +30,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <%= content_tag :tr, class: ('success' if current_user_rating(product) >= 4) do %>
+          <%= content_tag :tr, class: table_row_class(current_user_rating(product)) do %>
             <td><%= link_to product.code, product %></td>
             <td><%= link_to product.title, product %></td>
             <td>
