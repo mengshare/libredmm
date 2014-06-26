@@ -42,6 +42,6 @@ module ProductsHelper
   end
 
   def actress_products_link(actress)
-    link_to(actress, products_path(actress: actress))
+    link_to(actress, products_path(actress: actress)) if actress
   end
 end
