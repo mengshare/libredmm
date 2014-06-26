@@ -6,7 +6,6 @@ module ProductsHelper
   end
 
   def product_spec(term, description = nil, icon = nil, &block)
-    description, icon = yield, description if block_given?
     return nil if description.blank?
     case description
     when Array
@@ -40,5 +39,9 @@ module ProductsHelper
     else
       nil
     end
+  end
+
+  def actress_products_link(actress)
+    link_to(actress, products_path(actress: actress))
   end
 end

@@ -2,12 +2,10 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    if params[:reviewed]
-      authenticate_user!
-      @products = current_user.reviewed_products.page params[:page]
-    else
-      @products = Product.page params[:page]
-    end
+    authenticate_user! if params[:reviewed]
+    @products = params[:reviewed] ? current_user.reviewed_products : Product.all
+    @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress]
+    @products = @products.page(params[:page])
   end
 
   def show

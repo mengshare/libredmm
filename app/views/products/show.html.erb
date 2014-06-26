@@ -20,7 +20,11 @@
   <section class='details col-sm-4'>
 
     <dl class='dl-horizontal'>
-      <%= product_spec('Actresses', @product.actresses, 'female') %>
+      <%= product_spec('Actresses',
+                       @product.actresses.map { |actress|
+                         actress_products_link(actress)
+                       },
+                       'female') %>
       <%= product_spec('Directors', @product.directors, 'male') %>
 
       <%= product_spec('Actress Types', @product.actress_types, 'tags') %>
@@ -39,9 +43,9 @@
       <%= product_spec('Release Date', @product.release_date, 'calendar') %>
 
       <%= product_spec('Maker', @product.maker, 'suitcase') %>
-      <%= product_spec('Source Page', 'suitcase') do %>
-        <% link_to(URI(@product.page).host, @product.page, target: '_blank') %>
-      <% end %>
+      <%= product_spec('Source Page',
+                       link_to(URI(@product.page).host, @product.page, target: '_blank'),
+                       'suitcase') %>
     </dl>
   </section>
   <% if @product.description %>
