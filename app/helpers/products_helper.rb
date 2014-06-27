@@ -41,7 +41,8 @@ module ProductsHelper
     end
   end
 
-  def actress_products_link(actress)
-    link_to(actress, products_path(actress: actress)) if actress
+  def link_to_products_with_filter(options, text = nil)
+    text ||= options.values.first
+    link_to(text, products_path(options)) if text
   end
 end

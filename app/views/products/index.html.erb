@@ -1,7 +1,8 @@
 <% content_for :title do %>
   <%= 'Reviewed' if params[:reviewed] %>
   Products
-  <%= "by #{params[:actress]}" if params[:actress] %>
+  <%= "by #{params[:maker]}" if params[:maker] %>
+  <%= "with #{params[:actress]} in" if params[:actress] %>
 <% end %>
 
 <article class='product row'>
@@ -35,7 +36,7 @@
             <td><%= link_to product.code, product %></td>
             <td><%= link_to product.title, product %></td>
             <td>
-              <%= actress_products_link(product.actresses.first) %>
+              <%= link_to_products_with_filter(actress: product.actresses.first) %>
               <% if product.actresses.size > 1 %>
                 <%= content_tag :small,
                                 class: 'has-tooltip',

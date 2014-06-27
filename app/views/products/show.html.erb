@@ -22,7 +22,7 @@
     <dl class='dl-horizontal'>
       <%= product_spec('Actresses',
                        @product.actresses.map { |actress|
-                         actress_products_link(actress)
+                         link_to_products_with_filter(actress: actress)
                        },
                        'female') %>
       <%= product_spec('Directors', @product.directors, 'male') %>
@@ -42,7 +42,9 @@
                       ) if @product.movie_length %>
       <%= product_spec('Release Date', @product.release_date, 'calendar') %>
 
-      <%= product_spec('Maker', @product.maker, 'suitcase') %>
+      <%= product_spec('Maker',
+                       link_to_products_with_filter(maker: @product.maker),
+                       'suitcase') %>
       <%= product_spec('Source Page',
                        link_to(URI(@product.page).host, @product.page, target: '_blank'),
                        'suitcase') %>

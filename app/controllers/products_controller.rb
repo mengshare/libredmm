@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   def index
     authenticate_user! if params[:reviewed]
     @products = params[:reviewed] ? current_user.reviewed_products : Product.all
+    @products = @products.where(maker: params[:maker]) if params[:maker]
     @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress]
     @products = @products.page(params[:page])
   end
