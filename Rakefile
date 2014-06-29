@@ -8,30 +8,29 @@ Rails.application.load_tasks
 namespace :products do
   desc 'Refresh all products'
   task :refresh_all => :environment do
-    failure_counter = 0
-    success_counter = 0
-    Product.all.each do |product|
-      print "Refeshing #{product.code}... "
-      result = product.refresh!
-      result ? (success_counter += 1) : (failure_counter += 1)
-      puts result ? "Success!" : "Failed!"
-    end
-    puts "All products refreshed. #{success_counter} succeeded. #{failure_counter} failed."
+    refresh_products
   end
 
   desc 'Refresh products matching regex'
-  task :refresh, [:regex] => :environment do |t, args|
-    regex = Regexp.new(args[:regex], Regexp::IGNORECASE)
-    puts regex
-    failure_counter = 0
+  task :refresh, [:regexp] => :environment do |t, args|
+    refresh_products Regexp.new(args[:regexp], Regexp::IGNORECASE)
+  end
+
+private
+  def refresh_products(regexp = nil)
+    total_counter = 0
     success_counter = 0
     Product.all.each do |product|
-      next unless product.code =~ regex
+      next unless !regexp || product.code =~ regexp
       print "Refeshing #{product.code}... "
-      result = product.refresh!
-      result ? (success_counter += 1) : (failure_counter += 1)
-      puts result ? "Success!" : "Failed!"
+      total_counter += 1
+      if product.refresh!
+        success_counter += 1
+        puts "Succeeded!"
+      else
+        puts "Failed!"
+      end
     end
-    puts "All products refreshed. #{success_counter} succeeded. #{failure_counter} failed."
+    puts "Job finished. Refreshed #{success_counter} out of #{total_counter} matched."
   end
 end
