@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622103900) do
+ActiveRecord::Schema.define(version: 20140701054640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,16 @@ ActiveRecord::Schema.define(version: 20140622103900) do
     t.string   "theme"
     t.string   "thumbnail_image"
     t.string   "boobs"
-    t.string   "actresses",       default: [], array: true
-    t.string   "actress_types",   default: [], array: true
-    t.string   "categories",      default: [], array: true
-    t.string   "directors",       default: [], array: true
-    t.string   "genres",          default: [], array: true
-    t.string   "sample_images",   default: [], array: true
-    t.string   "scenes",          default: [], array: true
-    t.string   "aliases",         default: [], array: true
+    t.string   "actresses",        default: [], array: true
+    t.string   "actress_types",    default: [], array: true
+    t.string   "categories",       default: [], array: true
+    t.string   "directors",        default: [], array: true
+    t.string   "genres",           default: [], array: true
+    t.string   "sample_images",    default: [], array: true
+    t.string   "scenes",           default: [], array: true
+    t.string   "aliases",          default: [], array: true
+    t.string   "scatologies",      default: [], array: true
+    t.string   "transsexualities", default: [], array: true
   end
 
   add_index "products", ["code"], name: "index_products_on_code", unique: true, using: :btree
