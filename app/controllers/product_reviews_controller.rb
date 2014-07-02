@@ -9,7 +9,7 @@ class ProductReviewsController < ApplicationController
 
   def destroy
     @review = @product.reviews.find_by(user: current_user)
-    redirect_to :back, alert: (@review.destroy ? nil : 'Unknown Error')
+    redirect_to :back, alert: (@review.try(:destroy) ? nil : 'Unknown Error')
   end
 
   private

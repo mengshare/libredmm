@@ -8,8 +8,10 @@
     <% end %>
   <% end %>
 <% end %>
-<small>
-  <%= link_to product_unrate_path(product), method: :delete, class: 'rating' do %>
-    <%= icon_fa 'trash-o' %>
-  <% end %>
-</small>
+<% if rating > 0 %>
+  <small>
+    <%= link_to product_unrate_path(product), method: :delete, class: 'rating' do %>
+      <%= icon_fa 'trash-o' %>
+    <% end %>
+  </small>
+<% end %>
