@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
         format.json { render json: @product, except: [:id, :created_at, :updated_at] }
       end
     else
-      logger.error "[NotFound] #{params[:id]}"
       render :notfound, status: :not_found
     end
   end
@@ -25,6 +24,7 @@ class ProductsController < ApplicationController
     if @product.refresh!
       redirect_to @product, info: "Product information refreshed, if you still believe it's wrong, click Report Error again. Thanks!"
     else
+      Log.error_report(params[:id])
       redirect_to @product, success: 'Error reported. Thanks!'
     end
   end
@@ -32,5 +32,6 @@ class ProductsController < ApplicationController
   private
     def set_product
       @product = Product.search(params[:id])
+      Log.not_found(params[:id]) unless @product
     end
 end

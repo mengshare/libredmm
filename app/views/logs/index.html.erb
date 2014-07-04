@@ -1,0 +1,25 @@
+<% content_for :title do %>
+  Logs
+<% end %>
+
+<article class='log row'>
+  <header>
+    <h1><%= yield :title %></h1>
+  </header>
+  <section>
+    <table class='table'>
+      <thead>
+        <th class='col-sm-2'>Key</th>
+        <th class='col-sm-10'>Message</th>
+      </thead>
+      <tbody>
+        <% @logs.each do |log| %>
+          <tr>
+            <td><%= log.key %></td>
+            <td><%= log.message %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</article>

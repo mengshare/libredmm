@@ -1,5 +1,6 @@
 module ProductsHelper
   def image_link_to(image, link_options = {}, image_options = {})
+    image_options.reverse_merge!(ref: 'noreferer')
     link_to image, link_options do
       image_tag image, image_options
     end

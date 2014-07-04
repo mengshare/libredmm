@@ -33,7 +33,7 @@ class Product < ActiveRecord::Base
   end
 
   def refresh!
-    return false if updated_at >= 1.minute.ago
+    return false if updated_at >= 10.minute.ago
     @details = OpenDMM.search(code)
     return false unless @details
     self.attributes = @details

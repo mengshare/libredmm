@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     delete 'rating', to: 'product_reviews#destroy', as: 'unrate'
   end
   devise_for :users
+  resources :logs, only: [:index, :show]
 end
