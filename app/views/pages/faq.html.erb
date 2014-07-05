@@ -2,16 +2,19 @@
   FAQ
 <% end %>
 
-<article>
+<article class='faq'>
   <header>
     <h1><%= yield :title %></h1>
   </header>
   <section>
-    <dl>
-      <dt>Will you provide any downloading or online-streaming information?</dt>
-      <dd>No</dd>
-      <dt>Why can't I see the images?</dt>
-      <dd>We don't provide any proxy for images, so if you're in wrong area which is prohibited by the maker's offical site or behine GFW, you may not be able to see the images. We would suggest you to try a proxy or VPN before reporting this kind of error.</dd>
+    <%= q_and_a(
+          'Will you provide any downloading or online-streaming information?',
+          'No'
+        ) %>
+    <%= q_and_a(
+          "Why can't I see the images?",
+          "We don't provide any proxy for images, so if you're in wrong area which is prohibited by the maker's offical site or behine GFW, you may not be able to see the images. We would suggest you to try a proxy or VPN before reporting this kind of error."
+        ) %>
     </dl>
   </section>
 </article>

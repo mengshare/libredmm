@@ -21,6 +21,11 @@
       <% end %>
       <ul class='nav navbar-nav navbar-right'>
         <%= yield :navbar_links %>
+        <li>
+          <a href='/faq'>
+            <%= icon_fa 'question-circle', 'FAQ' %>
+          </a>
+        </li>
         <% if user_signed_in? %>
           <li class='dropdown'>
             <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
