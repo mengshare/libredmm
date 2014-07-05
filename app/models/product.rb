@@ -28,6 +28,12 @@ class Product < ActiveRecord::Base
     save
   end
 
+  def rating_by(user)
+    reviews.detect do |review|
+      review.user_id == user.id
+    end.try(:rating)
+  end
+
   def to_param
     code
   end

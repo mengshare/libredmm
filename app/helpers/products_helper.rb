@@ -23,13 +23,7 @@ module ProductsHelper
     (content_tag(:dt, term) + content_tag(:dd, description)).html_safe
   end
 
-  def current_user_rating(product)
-    return 0 unless user_signed_in?
-    review = product.reviews.find_by(user: current_user)
-    review ? review.rating : 0
-  end
-
-  def table_row_class(rating)
+  def contextual_rating_class(rating)
     case rating
     when 1
       'danger'

@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <%= content_tag :tr, class: table_row_class(current_user_rating(product)) do %>
+          <%= content_tag :tr, class: contextual_rating_class(product.rating_by(current_user)) do %>
             <td><%= link_to product.code, product %></td>
             <td><%= link_to product.title, product %></td>
             <td>
