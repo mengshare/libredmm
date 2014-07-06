@@ -16,6 +16,25 @@ namespace :products do
     refresh_products Regexp.new(args[:regexp], Regexp::IGNORECASE)
   end
 
+  desc 'Explore the world!'
+  task :explore do
+    series = Hash.new
+    Product.all.each do |product|
+      if product.code =~ /^(\w+)-(\d+)/
+        series[$1] = $2.length unless series[$1] && series[$1] < $2.length
+      end
+    end
+    series.each do |alpha, min_len|
+      99999.times do |i|
+        digit = (i + 1).to_s.rjust(min_len, '0')
+        code = "#{alpha}-#{digit}"
+        next if Product.search_in_db(code)
+        break unless Product.search(code)
+        puts "Found #{code} !"
+      end
+    end
+  end
+
 private
   def refresh_products(regexp = nil)
     total_counter = 0

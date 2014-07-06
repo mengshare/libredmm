@@ -8,8 +8,12 @@ class Product < ActiveRecord::Base
   default_scope { order(code: :asc) }
   paginates_per 50
 
+  def self.search_in_db(query)
+    return self.where("? = ANY (aliases)", query.upcase).take
+  end
+
   def self.search(query)
-    product = self.where("? = ANY (aliases)", query.upcase).take
+    product = search_in_db(query)
     return product if product
     details = OpenDMM.search(query)
     return nil unless details
