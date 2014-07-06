@@ -10,11 +10,9 @@
     </h1>
   </header>
   <section class='ratings col-sm-12'>
-    <% if user_signed_in? %>
-      <span class='user-rating'>
-        <%= render partial: 'rating', locals: { product: @product } %>
-      </span>
-    <% end %>
+    <span class='user-rating'>
+      <%= render partial: 'rating', locals: { product: @product } %>
+    </span>
     <%= rating_badge_span @product, class: 'average-rating' %>
   </section>
   <section class='cover col-sm-8'>

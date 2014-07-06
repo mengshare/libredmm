@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   validates :code, :title, :thumbnail_image, :cover_image, presence: true
   validates :code, uniqueness: true
 
-  paginates_per 25
+  paginates_per 30
 
   def self.search_in_db(query)
     return self.where("? = ANY (aliases)", query.upcase).take

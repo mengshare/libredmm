@@ -1,4 +1,4 @@
-<%= form_tag products_path, method: :get, class: 'row', role: 'form' do %>
+<%= form_tag products_path, method: :get, class: 'advanced-search-box row', role: 'form' do %>
   <fieldset class='col-sm-12 row'>
     <div class='form-group col-sm-2'>
       <%= label_tag 'maker', 'Maker' %>
@@ -21,29 +21,34 @@
       <%= text_field_tag 'title', params[:title], class: 'form-control' %>
     </div>
   </fieldset>
-  <% if user_signed_in? %>
-    <fieldset class='col-sm-12 row'>
-      <div class='form-group col-sm-2'>
-        <%= label_tag 'min_rating', 'Min Rating' %>
-        <%= select_tag( 'min_rating',
-                        options_for_select(1..5, params[:min_rating]),
-                        include_blank: true,
-                        class: 'form-control'
-                      ) %>
-      </div>
-      <div class='form-group col-sm-2'>
-        <%= label_tag 'max_rating', 'Max Rating' %>
-        <%= select_tag( 'max_rating',
-                        options_for_select(1..5, params[:max_rating]),
-                        include_blank: true,
-                        class: 'form-control'
-                      ) %>
-      </div>
+  <fieldset class='col-sm-12 row'>
+    <div class='form-group col-sm-2'>
+      <%= label_tag 'min_rating', 'Min Rating' %>
+      <%= select_tag( 'min_rating',
+                      options_for_select(1..5, params[:min_rating]),
+                      include_blank: true,
+                      class: 'form-control'
+                    ) %>
+    </div>
+    <div class='form-group col-sm-2'>
+      <%= label_tag 'max_rating', 'Max Rating' %>
+      <%= select_tag( 'max_rating',
+                      options_for_select(1..5, params[:max_rating]),
+                      include_blank: true,
+                      class: 'form-control'
+                    ) %>
+    </div>
+    <div class='checkbox col-sm-2'>
+      <label>
+        <%= check_box_tag 'text_mode', 1, params[:text_mode] %>
+        Text Mode
+      </label>
+    </div>
     </fieldset>
-  <% end %>
   <fieldset class='col-sm-12 row'>
     <div class='form-group col-sm-2'>
       <%= submit_tag 'Go', class: 'btn btn-success' %>
     </div>
+
   </fieldset>
 <% end %>

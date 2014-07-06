@@ -24,8 +24,17 @@ article.product {
       }
     }
   }
+  form.advanced-search-box {
+    div.checkbox {
+      margin-top: 30px;
+    }
+  }
   ul.pagination {
     margin: 0;
+  }
+  div.product-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   section.cover {
     img {

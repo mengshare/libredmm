@@ -1,0 +1,36 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th class='col-sm-1'>Code</th>
+      <th class='col-sm-5'>Title</th>
+      <th class='col-sm-1'>Actresses</th>
+      <% if user_signed_in? %>
+        <th class='col-sm-1'>Rating</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <%= content_tag :tr, class: contextual_rating_class(product.rating_by(current_user)) do %>
+        <td><%= link_to product.code, product %></td>
+        <td><%= link_to product.title, product %></td>
+        <td>
+          <%= link_to_products_with_filter(actress: product.actresses.first) %>
+          <% if product.actresses.size > 1 %>
+            <%= content_tag :small,
+                            class: 'has-tooltip',
+                            data: { toggle: 'tooltip', placement: 'right' },
+                            title: product.actresses[1..-1].join('，') do %>
+              + <%= product.actresses.size - 1 %>
+            <% end %>
+          <% end %>
+        </td>
+        <% if user_signed_in? %>
+          <td>
+            <%= render partial: 'rating', locals: { product: product } %>
+          </td>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
