@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    if params[:min_rating] || params[:max_rating]
+    if params[:min_rating].present? || params[:max_rating].present?
       authenticate_user!
       min_rating = params[:min_rating].present? ? params[:min_rating].to_i : 1
       max_rating = params[:max_rating].present? ? params[:max_rating].to_i : 5
