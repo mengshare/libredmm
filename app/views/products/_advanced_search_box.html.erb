@@ -3,26 +3,22 @@
     <div class='form-group col-sm-2'>
       <%= label_tag 'maker', 'Maker' %>
       <%= select_tag( 'maker',
-                      options_for_select(@makers_options, params[:maker]),
+                      options_for_select(Product.uniq.pluck(:maker).sort, params[:maker]),
                       include_blank: true,
                       class: 'form-control'
                     ) %>
     </div>
     <div class='form-group col-sm-2'>
       <%= label_tag 'actress', 'Actress' %>
-      <%= select_tag( 'actress',
-                      options_for_select(@actresses_options, params[:actress]),
-                      include_blank: true,
-                      class: 'form-control'
-                    ) %>
+      <%= text_field_tag 'actress', params[:actress], class: 'form-control' %>
     </div>
     <div class='form-group col-sm-2'>
       <%= label_tag 'code', 'Code' %>
-      <%= text_field_tag 'code', nil, class: 'form-control' %>
+      <%= text_field_tag 'code', params[:code], class: 'form-control' %>
     </div>
     <div class='form-group col-sm-6'>
       <%= label_tag 'title', 'Title' %>
-      <%= text_field_tag 'title', nil, class: 'form-control' %>
+      <%= text_field_tag 'title', params[:title], class: 'form-control' %>
     </div>
   </fieldset>
   <% if user_signed_in? %>

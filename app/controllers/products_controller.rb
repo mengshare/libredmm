@@ -13,13 +13,10 @@ class ProductsController < ApplicationController
       @products = Product.includes(:reviews)
     end
 
-    @makers_options = Product.uniq.pluck(:maker).sort
-    @actresses_options = Product.pluck(:actresses).flatten.uniq.sort
-
     @products = @products.where(maker: params[:maker]) if params[:maker].present?
     @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress].present?
     @products = @products.where("code LIKE ?", "%#{params[:code]}%") if params[:code].present?
-    @products = @products.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    @products = @products.where("title LIKE ?", "%#{params[:title].split.join('%')}%") if params[:title].present?
 
     if params[:latest]
       @products = @products.order(created_at: :desc)
