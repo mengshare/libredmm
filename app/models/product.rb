@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   end
 
   def rating_by(user)
+    return nil unless user
     reviews.detect do |review|
       review.user_id == user.id
     end.try(:rating)
