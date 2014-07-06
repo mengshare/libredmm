@@ -35,6 +35,10 @@ class Product < ActiveRecord::Base
     end.try(:rating)
   end
 
+  def average_rating
+    reviews.average(:rating)
+  end
+
   def to_param
     code
   end

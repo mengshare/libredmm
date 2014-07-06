@@ -8,12 +8,15 @@
       <span><%= yield :title %></span>
       <small><%= @product.subtitle %></small>
     </h1>
-    <% if user_signed_in? %>
-      <h3 class='rating'>
-        <%= render partial: 'rating', locals: { product: @product } %>
-      </h3>
-    <% end %>
   </header>
+  <section class='ratings col-sm-12'>
+    <% if user_signed_in? %>
+      <span class='user-rating'>
+        <%= render partial: 'rating', locals: { product: @product } %>
+      </span>
+    <% end %>
+    <%= rating_badge_span @product, class: 'average-rating' %>
+  </section>
   <section class='cover col-sm-8'>
     <%= image_link_to @product.cover_image, {}, class: 'img-rounded' %>
   </section>
