@@ -17,7 +17,7 @@ namespace :products do
   end
 
   desc 'Explore the world!'
-  task :explore do
+  task :explore => :environment do
     series = Hash.new
     Product.all.each do |product|
       if product.code =~ /^(\w+)-(\d+)/
