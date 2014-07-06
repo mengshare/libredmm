@@ -5,8 +5,7 @@ class Product < ActiveRecord::Base
   validates :code, :title, :thumbnail_image, :cover_image, presence: true
   validates :code, uniqueness: true
 
-  default_scope { order(code: :asc) }
-  paginates_per 50
+  paginates_per 25
 
   def self.search_in_db(query)
     return self.where("? = ANY (aliases)", query.upcase).take

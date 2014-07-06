@@ -1,26 +1,29 @@
 <% content_for :title do %>
-  <%= 'Reviewed' if params[:reviewed] %>
-  Products
-  <%= "by #{params[:maker]}" if params[:maker] %>
-  <%= "with #{params[:actress]} in" if params[:actress] %>
+  Advanced Search
 <% end %>
 
 <article class='product row'>
   <header>
     <h1><%= yield :title %></h1>
   </header>
-  <nav>
-    <ul class='nav nav-tabs pull-left'>
-      <%= content_tag :li, class: ('active' unless params[:reviewed]) do %>
-        <%= link_to 'All', products_path %>
-      <% end %>
-      <%= content_tag :li, class: ('active' if params[:reviewed]) do %>
-        <%= link_to 'Reviewed', products_path(reviewed: true) %>
-      <% end %>
-    </ul>
-    <%= paginate @products, theme: 'pull-right' %>
-  </nav>
+  <div class='panel-group' id='accordion'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h4 class='panel-title'>
+          <a data-toggle='collapse' data-parent='#accordion' href='#advanced_search_box'>
+            Search Terms
+          </a>
+        </h4>
+      </div>
+      <div id='advanced_search_box' class='panel-collapse collapse'>
+        <div class='panel-body'>
+          <%= render 'advanced_search_box' %>
+        </div>
+      </div>
+    </div>
+  </div>
   <section>
+    <%= paginate @products %>
     <table class='table'>
       <thead>
         <tr>
@@ -43,7 +46,7 @@
                 <%= content_tag :small,
                                 class: 'has-tooltip',
                                 data: { toggle: 'tooltip', placement: 'right' },
-                                title: product.actresses[1..-1].join("，") do %>
+                                title: product.actresses[1..-1].join('，') do %>
                   + <%= product.actresses.size - 1 %>
                 <% end %>
               <% end %>
@@ -57,5 +60,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @products %>
   </section>
 </article>

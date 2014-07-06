@@ -2,12 +2,30 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    authenticate_user! if params[:reviewed]
-    @products = params[:reviewed] ? current_user.reviewed_products : Product.all
-    @products = @products.includes(:reviews)
-    @products = @products.where(maker: params[:maker]) if params[:maker]
-    @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress]
-    @products = @products.reorder(created_at: :desc) if params[:latest]
+    if params[:min_rating] || params[:max_rating]
+      authenticate_user!
+      min_rating = params[:min_rating].present? ? params[:min_rating].to_i : 1
+      max_rating = params[:max_rating].present? ? params[:max_rating].to_i : 5
+      @products = current_user.reviewed_products.includes(:reviews)
+                              .where('rating >= ?', min_rating)
+                              .where('rating <= ?', max_rating)
+    else
+      @products = Product.includes(:reviews)
+    end
+
+    @makers_options = Product.uniq.pluck(:maker).sort
+    @actresses_options = Product.pluck(:actresses).flatten.uniq.sort
+
+    @products = @products.where(maker: params[:maker]) if params[:maker].present?
+    @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress].present?
+    @products = @products.where("code LIKE ?", "%#{params[:code]}%") if params[:code].present?
+    @products = @products.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+
+    if params[:latest]
+      @products = @products.order(created_at: :desc)
+    else
+      @products = @products.order(code: :asc)
+    end
     @products = @products.page(params[:page])
   end
 
