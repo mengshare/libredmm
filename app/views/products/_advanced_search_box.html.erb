@@ -1,12 +1,13 @@
 <%= form_tag products_path, method: :get, class: 'advanced-search-box row', role: 'form' do %>
   <fieldset class='col-sm-12 row'>
-    <div class='form-group col-sm-2'>
+    <div class='form-group col-sm-2' ng-controller='MakerTypeaheadCtrl'>
       <%= label_tag 'maker', 'Maker' %>
-      <%= select_tag( 'maker',
-                      options_for_select(Product.uniq.pluck(:maker).sort, params[:maker]),
-                      include_blank: true,
-                      class: 'form-control'
-                    ) %>
+      <%= text_field_tag( 'maker',
+                          params[:maker],
+                          class: 'form-control',
+                          'ng-model' => 'selected',
+                          autocomplete: 'off',
+                          typeahead: 'maker for maker in makers | filter:$viewValue | limitTo:10') %>
     </div>
     <div class='form-group col-sm-2' ng-controller='ActressTypeaheadCtrl'>
       <%= label_tag 'actress', 'Actress' %>
@@ -15,15 +16,25 @@
                           class: 'form-control',
                           'ng-model' => 'selected',
                           autocomplete: 'off',
-                          typeahead: 'actress for actress in actresses | filter:$viewValue | limitTo:8') %>
+                          typeahead: 'actress for actress in actresses | filter:$viewValue | limitTo:10') %>
     </div>
-    <div class='form-group col-sm-2'>
+    <div class='form-group col-sm-2' ng-controller='CodeTypeaheadCtrl'>
       <%= label_tag 'code', 'Code' %>
-      <%= text_field_tag 'code', params[:code], class: 'form-control' %>
+      <%= text_field_tag( 'code',
+                          params[:code],
+                          class: 'form-control',
+                          'ng-model' => 'selected',
+                          autocomplete: 'off',
+                          typeahead: 'code for code in codes | filter:$viewValue | limitTo:10') %>
     </div>
-    <div class='form-group col-sm-6'>
+    <div class='form-group col-sm-6' ng-controller='TitleTypeaheadCtrl'>
       <%= label_tag 'title', 'Title' %>
-      <%= text_field_tag 'title', params[:title], class: 'form-control' %>
+      <%= text_field_tag( 'title',
+                          params[:title],
+                          class: 'form-control',
+                          'ng-model' => 'selected',
+                          autocomplete: 'off',
+                          typeahead: 'title for title in titles | filter:$viewValue | limitTo:10') %>
     </div>
   </fieldset>
   <fieldset class='col-sm-12 row'>

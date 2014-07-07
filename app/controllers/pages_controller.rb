@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
   def search
-    if params[:q].empty?
+    if params[:code].empty?
       redirect_to root_url
     else
-      redirect_to product_path(params[:q])
+      redirect_to product_path(params[:code])
     end
   end
 end

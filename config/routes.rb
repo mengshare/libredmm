@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :logs, only: [:index, :show]
 
   get 'api/actresses'
+  get 'api/codes'
+  get 'api/makers'
+  get 'api/titles'
 end
