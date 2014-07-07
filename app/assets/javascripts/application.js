@@ -18,6 +18,6 @@
 //= require angular-ui-bootstrap-tpls
 //= require_tree .
 
-$(document).on("ready page:change", function() {
+$(document).on('ready page:change', function() {
   $('.has-tooltip').tooltip();
 });

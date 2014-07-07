@@ -14,7 +14,7 @@ hide_search_box = ->
       return
   $('#advanced_search_box').collapse('hide')
 
-$(document).on('ready page:load', hide_search_box)
+$(document).on('ready page:change', hide_search_box)
 
 app = angular.module('libredmm', ["ui.bootstrap"])
 
