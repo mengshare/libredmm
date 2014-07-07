@@ -16,10 +16,16 @@ ready = ->
 
 angular.element(document).ready(ready)
 
-angular.module('libredmm', ["ui.bootstrap"])
-@ActressTypeaheadCtrl = ($scope, $http) ->
-  $scope.selected = $('#actress')[0].value
-  $http.get('/api/actresses.json').then(
-    (response) ->
-      $scope.actresses = response.data
-  )
+app = angular.module('libredmm', ["ui.bootstrap"])
+app.controller(
+  'ActressTypeaheadCtrl',
+  [
+    '$scope',
+    ($scope, $http) ->
+      $scope.selected = $('#actress')[0].value
+      $http.get('/api/actresses.json').then(
+        (response) ->
+          $scope.actresses = response.data
+      )
+  ]
+)
