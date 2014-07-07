@@ -13,9 +13,9 @@
       <% unless request.url == root_url %>
         <%= form_tag search_path, method: :get, class: 'navbar-form navbar-left' do %>
           <div class='form-group'>
-            <%= text_field_tag 'code', nil, placeholder: 'Type ID here', class: 'form-control input-sm'%>
+            <%= text_field_tag 'q', nil, placeholder: 'Type ID here', class: 'form-control input-sm'%>
           </div>
-          <%= submit_tag 'Search', class: 'btn btn-success btn-sm' %>
+          <%= submit_tag 'Lucky', class: 'btn btn-success btn-sm' %>
           <%= link_to 'Advanced', products_path, class: 'btn btn-primary btn-sm' %>
         <% end %>
       <% end %>

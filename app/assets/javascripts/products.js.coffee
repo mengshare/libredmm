@@ -10,7 +10,7 @@ window.uri_params = uri_params
 hide_search_box = ->
   params = uri_params()
   for k, v of params
-    if !!v && k not in ['page', 'text_mode', 'utf8', 'commit']
+    if !!v && k not in ['commit', 'page', 'q', 'text_mode', 'utf8']
       return
   $('#advanced_search_box').collapse('hide')
 
