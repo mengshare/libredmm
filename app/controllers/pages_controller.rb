@@ -24,7 +24,7 @@ class PagesController < ApplicationController
       end
     end
     if @products.exists?
-      @products = @products.page(1)
+      @products = @products.page(params[:page])
       render 'products/index'
       return
     end
