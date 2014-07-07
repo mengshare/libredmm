@@ -2,12 +2,29 @@ $dt_width: 100px;
 
 article.product {
   margin-bottom: 30px;
+
   a.rating {
     text-decoration: none;
   }
   header {
     margin-bottom: 30px;
   }
+
+  // index page
+  form.advanced-search-box {
+    div.checkbox {
+      margin-top: 30px;
+    }
+  }
+  ul.pagination {
+    margin: 0;
+  }
+  div.product-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  // show page
   section.ratings {
     margin-top: -10px;
     margin-bottom: 30px;
@@ -23,18 +40,6 @@ article.product {
         margin-right: 20px;
       }
     }
-  }
-  form.advanced-search-box {
-    div.checkbox {
-      margin-top: 30px;
-    }
-  }
-  ul.pagination {
-    margin: 0;
-  }
-  div.product-group {
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
   section.cover {
     img {

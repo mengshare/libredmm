@@ -8,9 +8,14 @@
                       class: 'form-control'
                     ) %>
     </div>
-    <div class='form-group col-sm-2'>
+    <div class='form-group col-sm-2' ng-controller='ActressTypeaheadCtrl'>
       <%= label_tag 'actress', 'Actress' %>
-      <%= text_field_tag 'actress', params[:actress], class: 'form-control' %>
+      <%= text_field_tag( 'actress',
+                          params[:actress],
+                          class: 'form-control',
+                          'ng-model' => 'selected',
+                          autocomplete: 'off',
+                          typeahead: 'actress for actress in actresses | filter:$viewValue | limitTo:8') %>
     </div>
     <div class='form-group col-sm-2'>
       <%= label_tag 'code', 'Code' %>

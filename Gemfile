@@ -15,6 +15,8 @@ gem 'font-awesome-sass'
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'uglifier'

@@ -4,7 +4,6 @@
 @import "pages";
 @import "products";
 @import "devise";
-@import url("//fonts.googleapis.com/css?family=Special+Elite");
 
 $footer_height: 60px;
 
@@ -12,23 +11,14 @@ html {
   position: relative;
   min-height: 100%;
 }
-
 body {
   padding-top: 70px;
   margin-bottom: $footer_height;
 }
 
+@import url("//fonts.googleapis.com/css?family=Special+Elite");
 .logo {
   font-family: 'Special Elite', 'Papyrus', cursive;
-}
-
-legend {
-  padding-top: 20px;
-}
-
-input.form-control[type='checkbox'] {
-  border: 0;
-  box-shadow: none;
 }
 
 footer {
@@ -42,4 +32,9 @@ footer {
   p {
     margin-bottom: 0;
   }
+}
+
+// Required by Angular Bootstrap
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
 }

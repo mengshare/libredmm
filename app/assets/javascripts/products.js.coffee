@@ -1,4 +1,4 @@
-uri_params = () ->
+uri_params = ->
   params = {}
   for token in location.search.substring(1).split('&')
     pair = token.split('=')
@@ -11,10 +11,15 @@ ready = ->
   params = uri_params()
   for k, v of params
     if !!v && k not in ['page', 'text_mode', 'utf8', 'commit']
-      console.log k
-      console.log v
       $('#advanced_search_box').collapse('show')
       break
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+angular.element(document).ready(ready)
+
+angular.module('libredmm', ["ui.bootstrap"])
+@ActressTypeaheadCtrl = ($scope, $http) ->
+  $scope.selected = $('#actress')[0].value
+  $http.get('/api/actresses.json').then(
+    (response) ->
+      $scope.actresses = response.data
+  )

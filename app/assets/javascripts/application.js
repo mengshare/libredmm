@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require angular
+//= require angular-ui-bootstrap-tpls
 //= require_tree .
 
 $(document).on("ready page:change", function() {
-    $('.has-tooltip').tooltip();
+  $('.has-tooltip').tooltip();
 });
