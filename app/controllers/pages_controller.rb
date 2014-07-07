@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     end
     @product = Product.search(params[:q])
     if @product
-      render 'products/show'
+      redirect_to @product
       return
     end
     @products = Product.where("code LIKE ?", "%#{params[:q]}%")
