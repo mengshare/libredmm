@@ -21,6 +21,7 @@ app.controller(
   'ActressTypeaheadCtrl',
   [
     '$scope',
+    '$http',
     ($scope, $http) ->
       $scope.selected = $('#actress')[0].value
       $http.get('/api/actresses.json').then(
