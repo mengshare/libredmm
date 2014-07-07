@@ -24,13 +24,14 @@ namespace :products do
         series[$1] = $2.length unless series[$1] && series[$1] < $2.length
       end
     end
-    series.each do |alpha, min_len|
+    series.sort.each do |alpha, min_len|
+      puts "Trying #{alpha}-" + "x" * min_len
       99999.times do |i|
         digit = (i + 1).to_s.rjust(min_len, '0')
         code = "#{alpha}-#{digit}"
         next if Product.search_in_db(code)
         break unless Product.search(code)
-        puts "Found #{code} !"
+        puts "> Found #{code}"
       end
     end
   end
