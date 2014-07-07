@@ -1,15 +1,26 @@
 <% @products.in_groups_of(6, false).each do |group| %>
-  <div class='product-group row'>
+  <div class='thumbnail-group row'>
     <% group.each do |product| %>
-      <div class='col-sm-2'>
-        <%= link_to product do %>
-          <%= image_tag product.thumbnail_image, class: 'thumbnail col-sm-12' %>
-        <% end %>
-        <%= link_to product do %>
-          <%= product.code %>
-          <%= product.title %>
-        <% end %>
-      </div>
+      <article class='product-thumbnail col-sm-2'>
+        <section class='image'>
+          <%= link_to product, class: 'clearfix' do %>
+            <%= image_tag product.thumbnail_image, class: 'thumbnail col-sm-12' %>
+          <% end %>
+        </section>
+        <section class='ratings'>
+          <% if user_signed_in? %>
+            <span class='user-rating'>
+              <%= render partial: 'rating', locals: { product: product } %>
+            </span>
+          <% end %>
+        </section>
+        <section class='title'>
+          <%= link_to product do %>
+            <%= product.code %>
+            <%= product.title %>
+          <% end %>
+        </section>
+      </article>
     <% end %>
   </div>
 <% end %>

@@ -10,57 +10,71 @@ article.product {
     margin-bottom: 30px;
   }
 
-  // index page
-  form.advanced-search-box {
-    div.checkbox {
-      margin-top: 30px;
-    }
-  }
-  ul.pagination {
-    margin: 0;
-  }
-  div.product-group {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  // show page
-  section.ratings {
-    margin-top: -10px;
-    margin-bottom: 30px;
-    span {
-      line-height: 40px;
-      vertical-align: middle;
-      &.user-rating {
-        font-size: 24px;
-        margin-right: 20px;
-      }
-      &.average-rating {
-        font-size: 15px;
-        margin-right: 20px;
+  &.product-index {
+    form.advanced-search-box {
+      div.checkbox {
+        margin-top: 30px;
       }
     }
-  }
-  section.cover {
-    img {
-      margin-bottom: 15px;
-      width: 100%;
+    ul.pagination {
+      margin: 0;
     }
-  }
-  section.details {
-    dl.dl-horizontal {
-      dt {
-        width: $dt_width;
+    div.thumbnail-group {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      img.thumbnail {
+        margin-bottom: 10px;
       }
-      dd {
-        margin-left: $dt_width + 10px;
-        ul {
-          margin-bottom: 0;
+      section.ratings {
+        margin-bottom: 10px;
+      }
+      section.title {
+        padding-bottom: 10px;
+        .badge {
+          vertical-align: middle;
         }
       }
     }
   }
-  h2 {
-    margin-bottom: 25px;
+
+  &.product-show {
+    section.ratings {
+      margin-top: -10px;
+      margin-bottom: 30px;
+      span {
+        line-height: 40px;
+        vertical-align: middle;
+        &.user-rating {
+          font-size: 24px;
+          margin-right: 20px;
+        }
+        &.average-rating {
+          font-size: 15px;
+          margin-right: 20px;
+        }
+      }
+    }
+    section.cover {
+      img {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+    }
+    section.details {
+      dl.dl-horizontal {
+        dt {
+          width: $dt_width;
+        }
+        dd {
+          margin-left: $dt_width + 10px;
+          ul {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    h2 {
+      margin-bottom: 25px;
+    }
   }
 }

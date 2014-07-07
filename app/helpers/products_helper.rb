@@ -36,12 +36,20 @@ module ProductsHelper
     end
   end
 
-  def rating_badge_span(product, options = {})
+  def rating_label(product, options = {})
     rating = product.average_rating
     return nil unless rating
     options[:class] ||= ''
     options[:class] = [ options[:class], 'label label-success' ].join(' ')
     content_tag :span, "Average: #{rating}", options
+  end
+
+  def rating_badge(product, options = {})
+    rating = product.average_rating
+    return nil unless rating
+    options[:class] ||= ''
+    options[:class] = [ options[:class], 'badge' ].join(' ')
+    content_tag :span, rating, options
   end
 
   def link_to_products_with_filter(options, text = nil)
