@@ -1,21 +1,3 @@
-uri_params = ->
-  params = {}
-  for token in location.search.substring(1).split('&')
-    pair = token.split('=')
-    params[pair[0]] = pair[1]
-  params
-
-window.uri_params = uri_params
-
-hide_search_box = ->
-  params = uri_params()
-  for k, v of params
-    if !!v && k not in ['commit', 'page', 'q', 'text_mode', 'utf8']
-      return
-  $('#advanced_search_box').collapse('hide')
-
-$(document).on('ready page:change', hide_search_box)
-
 app = angular.module('libredmm', ["ui.bootstrap"])
 
 app.controller(
