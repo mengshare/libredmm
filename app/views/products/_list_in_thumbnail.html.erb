@@ -10,7 +10,7 @@
         <section class='ratings'>
           <% if user_signed_in? %>
             <span class='user-rating'>
-              <%= render partial: 'rating', locals: { product: product } %>
+              <%= render partial: 'products/rating', locals: { product: product } %>
             </span>
           <% end %>
         </section>
