@@ -40,6 +40,7 @@ group :development do
 end
 
 group :production do
+  gem 'heroku_rails_deflate'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end

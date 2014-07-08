@@ -78,6 +78,10 @@ GEM
       multi_json (~> 1.8)
     guard-rails (0.5.2)
       guard (~> 2.0)
+    heroku_rails_deflate (1.0.3)
+      actionpack (>= 3.2.13)
+      activesupport (>= 3.2.13)
+      rack (>= 1.4.5)
     hike (1.2.3)
     http_parser.rb (0.6.0)
     httparty (0.13.1)
@@ -214,6 +218,7 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rails
+  heroku_rails_deflate
   jbuilder
   jquery-rails
   kaminari
