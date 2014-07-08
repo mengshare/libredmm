@@ -32,6 +32,10 @@ footer {
   p {
     margin-bottom: 0;
   }
+  iframe {
+    height: 32px !important;
+    vertical-align: middle;
+  }
 }
 
 // Required by Angular Bootstrap
