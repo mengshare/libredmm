@@ -36,13 +36,16 @@ group :development do
   gem 'guard-bundler', require: false
   gem 'guard-livereload', require: false
   gem 'guard-rails'
+  gem 'quiet_assets'
   gem 'spring'
 end
 
 group :production do
+  gem 'dalli'
   gem 'heroku_rails_deflate'
-  gem 'rails_12factor'
+  gem 'memcachier'
   gem 'newrelic_rpm'
+  gem 'rails_12factor'
 end
 
 ruby '2.1.2'

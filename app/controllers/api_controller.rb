@@ -2,18 +2,26 @@ class ApiController < ApplicationController
   respond_to :json
 
   def actresses
-    respond_with Product.uniq.pluck(:actresses).flatten.sort.uniq
+    respond_with cache(Product) do
+      Product.uniq.pluck(:actresses).flatten.sort.uniq
+    end
   end
 
   def codes
-    respond_with Product.uniq.pluck(:code).sort
+    respond_with cache(Product) do
+      Product.uniq.pluck(:code).sort
+    end
   end
 
   def makers
-    respond_with Product.uniq.pluck(:maker).sort
+    respond_with cache(Product) do
+      Product.uniq.pluck(:maker).sort
+    end
   end
 
   def titles
-    respond_with Product.uniq.pluck(:title).sort
+    respond_with cache(Product) do
+      Product.uniq.pluck(:title).sort
+    end
   end
 end

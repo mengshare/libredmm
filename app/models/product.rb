@@ -21,6 +21,12 @@ class Product < ActiveRecord::Base
     product.register_alias(details[:code], query) ? product : nil
   end
 
+  def self.cache_key
+    count          = self.count
+    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "products/all-#{count}-#{max_updated_at}"
+  end
+
   def register_alias(*names)
     names.each do |name|
       unless aliases.include? name.upcase
