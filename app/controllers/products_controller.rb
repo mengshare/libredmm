@@ -2,19 +2,17 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    if params[:min_rating].present? || params[:max_rating].present?
+    if params[:reviewed]
       authenticate_user!
-      min_rating = params[:min_rating].present? ? params[:min_rating].to_i : 1
-      max_rating = params[:max_rating].present? ? params[:max_rating].to_i : 5
-      @products = current_user.reviewed_products.includes(:reviews)
-                              .where('rating >= ?', min_rating)
-                              .where('rating <= ?', max_rating)
+      @products = current_user.reviewed_products
     else
-      @products = Product.includes(:reviews)
+      @products = Product.all
     end
+    @products = @products.includes(:reviews)
 
     @products = @products.where(maker: params[:maker]) if params[:maker].present?
     @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress].present?
+    @products = @products.where("? = ANY (genres)", params[:genre]) if params[:genre].present?
     @products = @products.where("code LIKE ?", "%#{params[:code]}%") if params[:code].present?
     @products = @products.where("title LIKE ?", "%#{params[:title].split.join('%')}%") if params[:title].present?
 

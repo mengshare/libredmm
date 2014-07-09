@@ -7,8 +7,10 @@ class Product < ActiveRecord::Base
 
   paginates_per 30
 
-  def self.search_in_db(query)
-    return self.where("? = ANY (aliases)", query.upcase).take
+  def self.cache_key
+    count          = self.count
+    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "products/all-#{count}-#{max_updated_at}"
   end
 
   def self.search(query)
@@ -21,11 +23,39 @@ class Product < ActiveRecord::Base
     product.register_alias(details[:code], query) ? product : nil
   end
 
-  def self.cache_key
-    count          = self.count
-    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "products/all-#{count}-#{max_updated_at}"
+  def self.search_in_db(query)
+    return self.where("? = ANY (aliases)", query.upcase).take
   end
+
+  def genres=(new_genres)
+    old_genres = self.genres
+    new_genres = new_genres.map do |genre|
+      genre.split /[、・･]/
+    end.flatten.map do |genre|
+      genre.tr('０-９ａ-ｚＡ-Ｚ（）［］', '0-9a-zA-Z()[]')
+    end.uniq.sort
+    return if old_genres == new_genres
+    write_attribute(:genres, new_genres)
+    genres_will_change!
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def rating_by(user)
+    return nil unless user
+    reviews.detect do |review|
+      review.user_id == user.id
+    end.try(:rating)
+  end
+
+  def refresh!
+    return false if updated_at >= 10.minute.ago
+    @details = OpenDMM.search(code)
+    return false unless @details
+    self.attributes = @details
+    return false unless changed?
 
   def register_alias(*names)
     names.each do |name|
@@ -37,27 +67,9 @@ class Product < ActiveRecord::Base
     save
   end
 
-  def rating_by(user)
-    return nil unless user
-    reviews.detect do |review|
-      review.user_id == user.id
-    end.try(:rating)
-  end
-
-  def average_rating
-    reviews.average(:rating)
-  end
-
   def to_param
     code
   end
-
-  def refresh!
-    return false if updated_at >= 10.minute.ago
-    @details = OpenDMM.search(code)
-    return false unless @details
-    self.attributes = @details
-    return false unless changed?
     save
   end
 end

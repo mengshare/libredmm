@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'api/actresses'
   get 'api/codes'
+  get 'api/genres'
   get 'api/makers'
   get 'api/titles'
 end

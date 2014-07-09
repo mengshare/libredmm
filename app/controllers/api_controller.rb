@@ -9,6 +9,10 @@ class ApiController < ApplicationController
     respond_with(cache [Product, :codes] { Product.uniq.pluck(:code).sort })
   end
 
+  def genres
+    respond_with(cache [Product, :genres] { Product.uniq.pluck(:genres).flatten.sort.uniq })
+  end
+
   def makers
     respond_with(cache [Product, :makers] { Product.uniq.pluck(:maker).sort })
   end

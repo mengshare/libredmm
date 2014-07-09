@@ -32,7 +32,11 @@
       <%= product_spec('Boobs', @product.boobs, 'dot-circle-o') %>
       <%= product_spec('Brand', @product.brand, 'tag') %>
       <%= product_spec('Categories', @product.categories, 'folder-o') %>
-      <%= product_spec('Genres', @product.genres, 'tags') %>
+      <%= product_spec('Genres',
+                       @product.genres.map { |genre|
+                         link_to_products_with_filter(genre: genre)
+                       },
+                       'tags') %>
       <%= product_spec('Label', @product.label, 'tag') %>
       <%= product_spec('Scatologies', @product.scatologies, 'tags') %>
       <%= product_spec('Scenes', @product.scenes, 'tags') %>

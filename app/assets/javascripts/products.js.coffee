@@ -29,6 +29,20 @@ app.controller(
 )
 
 app.controller(
+  'GenreTypeaheadCtrl',
+  [
+    '$scope',
+    '$http',
+    ($scope, $http) ->
+      $scope.selected = $('#genre')[0].value
+      $http.get('/api/genres.json').then(
+        (response) ->
+          $scope.genres = response.data
+      )
+  ]
+)
+
+app.controller(
   'MakerTypeaheadCtrl',
   [
     '$scope',
