@@ -55,17 +55,3 @@ app.controller(
       )
   ]
 )
-
-app.controller(
-  'TitleTypeaheadCtrl',
-  [
-    '$scope',
-    '$http',
-    ($scope, $http) ->
-      $scope.selected = $('#title')[0].value
-      $http.get('/api/titles.json').then(
-        (response) ->
-          $scope.titles = response.data
-      )
-  ]
-)
