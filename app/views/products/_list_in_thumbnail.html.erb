@@ -4,7 +4,7 @@
       <article class='product-thumbnail col-sm-2'>
         <section class='image'>
           <%= link_to product, class: 'clearfix' do %>
-            <%= image_tag product.thumbnail_image, class: 'thumbnail col-sm-12' %>
+            <%= image_tag proxy_image(product.thumbnail_image), class: 'thumbnail col-sm-12' %>
           <% end %>
         </section>
         <section class='ratings'>

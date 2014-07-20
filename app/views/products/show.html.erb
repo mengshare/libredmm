@@ -16,7 +16,7 @@
     <%= rating_label @product, class: 'average-rating' %>
   </section>
   <section class='cover col-sm-8'>
-    <%= image_link_to @product.cover_image, {}, class: 'img-rounded' %>
+    <%= image_link_to proxy_image(@product.cover_image), {}, class: 'img-rounded' %>
   </section>
   <section class='details col-sm-4'>
 

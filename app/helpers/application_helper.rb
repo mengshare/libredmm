@@ -14,4 +14,8 @@ module ApplicationHelper
       name
     end
   end
+
+  def proxy_image(image_url)
+    image_url.gsub(/^http:\/\//, 'http://libredmm-proxy.herokuapp.com/')
+  end
 end
