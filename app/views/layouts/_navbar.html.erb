@@ -21,7 +21,7 @@
       <% end %>
       <ul class='nav navbar-nav navbar-right'>
         <%= yield :navbar_links %>
-        <li class='has-tooltip' data-toggle='tooltip' data-placement='bottom' title="Can't see image? Try turn proxy on.">
+        <li class='has-tooltip' data-toggle='tooltip' data-placement='bottom' title="Can't see image? Try turning proxy on.">
           <%= link_to toggle_proxy_path do %>
             <%= icon_fa 'magic', 'Proxy ' %>
             <% if use_image_proxy? %>
