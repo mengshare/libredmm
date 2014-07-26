@@ -16,6 +16,7 @@ module ApplicationHelper
   end
 
   def proxy_image(image_url)
-    image_url.gsub(/^http:\/\//, 'http://proxy.libredmm.com/')
+    use_image_proxy? ? image_url.gsub(/^http:\/\//, 'http://proxy.libredmm.com/')
+                     : image_url
   end
 end
