@@ -27,18 +27,6 @@ class Product < ActiveRecord::Base
     return self.where("? = ANY (aliases)", query.upcase).take
   end
 
-  def genres=(new_genres)
-    old_genres = self.genres
-    new_genres = new_genres.map do |genre|
-      genre.split /[、・･]/
-    end.flatten.map do |genre|
-      genre.tr('０-９ａ-ｚＡ-Ｚ（）［］', '0-9a-zA-Z()[]')
-    end.uniq.sort
-    return if old_genres == new_genres
-    write_attribute(:genres, new_genres)
-    genres_will_change!
-  end
-
   def average_rating
     reviews.average(:rating)
   end
