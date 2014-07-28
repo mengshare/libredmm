@@ -15,7 +15,7 @@
         <td><%= link_to product.code, product %></td>
         <td><%= link_to product.title, product %></td>
         <td>
-          <%= link_to_products_with_filter(actress: product.actresses.first.name) %>
+          <%= link_to_products_with_filter(actress: product.actresses.first.try(:name)) %>
           <% if product.actresses.size > 1 %>
             <%= content_tag :small,
                             class: 'has-tooltip',
