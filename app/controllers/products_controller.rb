@@ -2,26 +2,23 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
+    @products = Product.all
+
     if params[:reviewed]
       authenticate_user!
-      @products = current_user.reviewed_products
-    else
-      @products = Product.all
+      @products = Product.reviewed_by(current_user)
     end
-    @products = @products.includes(:reviews)
 
-    @products = @products.where(maker: params[:maker]) if params[:maker].present?
-    @products = @products.where("? = ANY (actresses)", params[:actress]) if params[:actress].present?
-    @products = @products.where("? = ANY (genres)", params[:genre]) if params[:genre].present?
-    @products = @products.where("code LIKE ?", "%#{params[:code]}%") if params[:code].present?
-    @products = @products.where("title LIKE ?", "%#{params[:title].split.join('%')}%") if params[:title].present?
+    @products = @products.with_actress(params[:actress])
+                         .with_code(params[:code])
+                         .with_genre(params[:genre])
+                         .with_maker(params[:maker])
+                         .with_title(params[:title])
 
-    if params[:latest]
-      @products = @products.order(created_at: :desc)
-    else
-      @products = @products.order(code: :asc)
-    end
-    @products = @products.page(params[:page])
+    @products = params[:latest] ? @products.order(created_at: :desc)
+                                : @products.order(code: :asc)
+
+    @products = @products.page(params[:page]).per(30)
   end
 
   def show

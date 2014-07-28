@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   respond_to :json
 
   def actresses
-    respond_with(cache [Product, :actresses] { Product.uniq.pluck(:actresses).flatten.sort.uniq })
+    respond_with(cache [Actress] { Actress.pluck(:name).sort })
   end
 
   def codes

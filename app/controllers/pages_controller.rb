@@ -1,33 +1,18 @@
 class PagesController < ApplicationController
   def search
-    if params[:q].blank?
+    query = params[:q]
+    if query.blank?
       redirect_to root_url
-      return
-    end
-    @product = Product.search(params[:q])
-    if @product
-      redirect_to @product
-      return
-    end
-    @products = Product.where("code LIKE ?", "%#{params[:q]}%")
-    if @products.exists?
-      params[:code] = params[:q]
+    elsif Product.search_in_db(query)
+      redirect_to product_path(query)
+    elsif Product.with_code(query).exists?
+      redirect_to products_path(code: query)
+    elsif Product.with_actress(query).exists?
+      redirect_to products_path(actress: query)
+    elsif Product.with_title(query).exists?
+      redirect_to products_path(title: params[:q])
     else
-      @products = Product.where("? = ANY (actresses)", params[:q])
-      if @products.exists?
-        params[:actress] = params[:q]
-      else
-        @products = Product.where("title LIKE ?", "%#{params[:q].split.join('%')}%") unless @products.exists?
-        if @products.exists?
-          params[:title] = params[:q]
-        end
-      end
+      redirect_to product_path(query)
     end
-    if @products.exists?
-      @products = @products.page(params[:page])
-      render 'products/index'
-      return
-    end
-    render 'products/notfound'
   end
 end

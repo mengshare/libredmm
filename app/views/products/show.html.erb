@@ -23,7 +23,7 @@
     <dl class='dl-horizontal'>
       <%= product_spec('Actresses',
                        @product.actresses.map { |actress|
-                         link_to_products_with_filter(actress: actress)
+                         link_to_products_with_filter(actress: actress.name)
                        },
                        'female') %>
       <%= product_spec('Directors', @product.directors, 'male') %>

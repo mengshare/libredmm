@@ -1,32 +1,76 @@
 class Product < ActiveRecord::Base
+  #==============
+  # Associations
+  #==============
   has_many :reviews, class_name: 'ProductReview'
   has_many :reviewed_users, through: :reviews, source: :user
+  has_and_belongs_to_many :actresses
 
+  #=============
+  # Validations
+  #=============
   validates :code, :title, :thumbnail_image, :cover_image, presence: true
   validates :code, uniqueness: true
 
-  paginates_per 30
-
-  def self.cache_key
-    count          = self.count
-    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "products/all-#{count}-#{max_updated_at}"
+  #========
+  # Scopes
+  #========
+  scope :reviewed_by, ->(user) do
+    includes(:reviews).where('product_reviews.user_id' => user.id) if user.present?
   end
 
+  scope :with_actress, ->(actress) do
+    includes(:actresses).where('actresses.name' => actress) if actress.present?
+  end
+
+  scope :with_code, ->(code) do
+    where("code LIKE ?", "%#{code}%") if code.present?
+  end
+
+  scope :with_genre, ->(genre) do
+    where("? = ANY (genres)", genre) if genre.present?
+  end
+
+  scope :with_maker, ->(maker) do
+    where(maker: maker) if maker.present?
+  end
+
+  scope :with_title, ->(title) do
+    where("title LIKE ?", "%#{title.split.join('%')}%") if title.present?
+  end
+
+  #========
+  # Search
+  #========
   def self.search(query)
-    product = search_in_db(query)
-    return product if product
-    details = OpenDMM.search(query)
-    return nil unless details
-    product = Product.find_by_code(details[:code]) ||
-              Product.new(details)
-    product.register_alias(details[:code], query) ? product : nil
+    search_in_db(query) || search_using_opendmm(query)
   end
 
   def self.search_in_db(query)
     return self.where("? = ANY (aliases)", query.upcase).take
   end
 
+  def self.search_using_opendmm(query)
+    details = OpenDMM.search(query)
+    return nil unless details
+    product = Product.find_by_code(details[:code]) ||
+              Product.create(details)
+    product.register_alias(details[:code], query)
+    product.save ? product : nil
+  end
+
+  #=========
+  # Caching
+  #=========
+  def self.cache_key
+    count          = self.count
+    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "products/all-#{count}-#{max_updated_at}"
+  end
+
+  #========
+  # Rating
+  #========
   def average_rating
     reviews.average(:rating)
   end
@@ -38,6 +82,9 @@ class Product < ActiveRecord::Base
     end.try(:rating)
   end
 
+  #=======
+  # Other
+  #=======
   def refresh!
     return false if updated_at >= 10.minute.ago
     @details = OpenDMM.search(code)
@@ -54,7 +101,6 @@ class Product < ActiveRecord::Base
         aliases_will_change!
       end
     end
-    save
   end
 
   def to_param

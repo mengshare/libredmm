@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711051805) do
+ActiveRecord::Schema.define(version: 20140728013642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actresses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "actresses", ["name"], name: "index_actresses_on_name", using: :btree
+
+  create_table "actresses_products", id: false, force: true do |t|
+    t.integer "actress_id"
+    t.integer "product_id"
+  end
 
   create_table "logs", force: true do |t|
     t.string   "key"
@@ -49,7 +62,6 @@ ActiveRecord::Schema.define(version: 20140711051805) do
     t.string   "theme"
     t.string   "thumbnail_image"
     t.string   "boobs"
-    t.string   "actresses",        default: [], array: true
     t.string   "actress_types",    default: [], array: true
     t.string   "categories",       default: [], array: true
     t.string   "directors",        default: [], array: true
@@ -61,7 +73,6 @@ ActiveRecord::Schema.define(version: 20140711051805) do
     t.string   "transsexualities", default: [], array: true
   end
 
-  add_index "products", ["actresses"], name: "index_products_on_actresses", using: :gin
   add_index "products", ["aliases"], name: "index_products_on_aliases", using: :gin
   add_index "products", ["code"], name: "index_products_on_code", unique: true, using: :btree
   add_index "products", ["maker"], name: "index_products_on_maker", using: :btree
