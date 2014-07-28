@@ -54,8 +54,17 @@ class Product < ActiveRecord::Base
     details = OpenDMM.search(query)
     return nil unless details
     product = Product.find_by_code(details[:code]) ||
-              Product.create(details)
+              Product.create_from_opendmm(details)
     product.register_alias(details[:code], query)
+    product.save ? product : nil
+  end
+
+  def self.create_from_opendmm(details)
+    actresses = details.delete :actresses
+    product = Product.create(details)
+    actresses.each do |actress|
+      product.actresses << Actress.find_or_create_by(name: actress)
+    end
     product.save ? product : nil
   end
 
