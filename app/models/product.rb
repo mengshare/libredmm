@@ -64,7 +64,7 @@ class Product < ActiveRecord::Base
     product = Product.create(details)
     actresses.each do |actress|
       product.actresses << Actress.find_or_create_by(name: actress)
-    end
+    end if actresses
     product.save ? product : nil
   end
 
