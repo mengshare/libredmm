@@ -56,6 +56,14 @@
                        link_to(URI(@product.page).host, @product.page, target: '_blank'),
                        'suitcase') %>
     </dl>
+    <dl class='dl-horizontal'>
+      <dt></dt>
+      <dd>
+        <%= link_to product_path(@product), class: 'btn btn-warning btn-sm', method: :delete do %>
+          <%= icon_fa 'paper-plane', 'Report Error' %>
+        <% end %>
+      </dd>
+    </dl>
   </section>
   <% if @product.description %>
     <section class='description col-sm-12'>
@@ -78,9 +86,5 @@
 </article>
 
 <% content_for :navbar_links do %>
-  <li>
-    <%= link_to product_path(@product), method: :delete do %>
-      <%= icon_fa 'paper-plane', 'Report Error' %>
-    <% end %>
-  </li>
+
 <% end %>

@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
       redirect_to @product, info: "Product information refreshed, if you still believe it's wrong, click Report Error again. Thanks!"
     else
       Log.error_report(params[:id])
-      redirect_to @product, success: "Error reported. Thanks! While we strongly suggest you to read the <a href='/faq'>FAQ</a> in case it's a known issue."
+      redirect_to @product, success: "Error reported. Thanks!"
     end
   end
 

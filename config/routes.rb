@@ -13,12 +13,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'users/toggle_proxy', to: 'users#toggle_proxy', as: 'toggle_proxy'
 
-
-  resources :logs, only: [:index, :show]
-
-  get 'api/actresses'
-  get 'api/codes'
-  get 'api/genres'
-  get 'api/makers'
-  get 'api/titles'
+  %w(actresses codes genres makers titles).each do |endpoint|
+    get "api/#{endpoint}"
+  end
 end

@@ -68,15 +68,6 @@ class Product < ActiveRecord::Base
     product.save ? product : nil
   end
 
-  #=========
-  # Caching
-  #=========
-  def self.cache_key
-    count          = self.count
-    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "products/all-#{count}-#{max_updated_at}"
-  end
-
   #========
   # Rating
   #========
@@ -94,6 +85,12 @@ class Product < ActiveRecord::Base
   #=======
   # Other
   #=======
+  def self.cache_key
+    count          = self.count
+    max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "products/all-#{count}-#{max_updated_at}"
+  end
+
   def refresh!
     return false if updated_at >= 10.minute.ago
     @details = OpenDMM.search(code)
