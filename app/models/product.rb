@@ -55,6 +55,7 @@ class Product < ActiveRecord::Base
     return nil unless details
     product = Product.find_by_code(details[:code]) ||
               Product.create_from_opendmm(details)
+    return nil unless product
     product.register_alias(details[:code], query)
     product.save ? product : nil
   end
