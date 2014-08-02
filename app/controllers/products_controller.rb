@@ -44,6 +44,6 @@ class ProductsController < ApplicationController
   private
     def set_product
       @product = Product.search(params[:id])
-      logger.tagged 'NOT_FOUND' do logger.warn params[:id] end
+      logger.tagged 'NOT_FOUND' do logger.warn params[:id] end unless @product
     end
 end
