@@ -94,9 +94,14 @@ class Product < ActiveRecord::Base
 
   def refresh!
     return false if updated_at >= 10.minute.ago
-    @details = OpenDMM.search(code)
-    return false unless @details
-    self.attributes = @details
+    details = OpenDMM.search(code)
+    return false unless details
+    actresses = details.delete :actresses
+    self.attributes = details
+    self.actresses = []
+    actresses.each do |actress|
+      self.actresses << Actress.find_or_create_by(name: actress)
+    end if actresses
     return false unless changed?
     save
   end

@@ -19,7 +19,6 @@
     <%= image_link_to proxy_image(@product.cover_image), {}, class: 'img-rounded' %>
   </section>
   <section class='details col-sm-4'>
-
     <dl class='dl-horizontal'>
       <%= product_spec('Actresses',
                        @product.actresses.map { |actress|
@@ -65,7 +64,7 @@
       </dd>
     </dl>
   </section>
-  <% if @product.description %>
+  <% if @product.description.present? %>
     <section class='description col-sm-12'>
       <h2>Description</h2>
       <p><%= @product.description %></p>

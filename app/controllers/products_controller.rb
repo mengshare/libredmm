@@ -2,11 +2,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    @products = Product.all
-
     if params[:reviewed]
       authenticate_user!
       @products = Product.reviewed_by(current_user)
+    else
+      @products = Product.all
     end
 
     @products = @products.with_actress(params[:actress])
