@@ -19,6 +19,14 @@ class Product < ActiveRecord::Base
     includes(:reviews).where('product_reviews.user_id' => user.id) if user.present?
   end
 
+  scope :min_rating, ->(rating) do
+    includes(:reviews).where('product_reviews.rating >= ?', rating) if rating.present?
+  end
+
+  scope :max_rating, ->(rating) do
+    includes(:reviews).where('product_reviews.rating <= ?', rating) if rating.present?
+  end
+
   scope :with_actress, ->(actress) do
     includes(:actresses).where('actresses.name' => actress) if actress.present?
   end

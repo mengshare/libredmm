@@ -2,9 +2,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    if params[:reviewed]
+    if params[:min_rating] || params[:max_rating]
       authenticate_user!
       @products = Product.reviewed_by(current_user)
+                         .min_rating(params[:min_rating])
+                         .max_rating(params[:max_rating])
     else
       @products = Product.all
     end

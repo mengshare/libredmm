@@ -27,11 +27,19 @@
                           autocomplete: 'off',
                           typeahead: 'genre for genre in genres | filter:$viewValue | limitTo:10') %>
     </div>
-    <div class='checkbox col-sm-2'>
-      <label>
-        <%= check_box_tag 'reviewed', 1, params[:reviewed] %>
-        Only Reviewed
-      </label>
+    <div class='form-group col-sm-2'>
+      <%= label_tag 'min_rating', 'Min Rating' %>
+      <%= select_tag( 'min_rating',
+                      options_for_select(1..5),
+                      class: 'form-control',
+                      include_blank: true) %>
+    </div>
+    <div class='form-group col-sm-2'>
+      <%= label_tag 'max_rating', 'Max Rating' %>
+      <%= select_tag( 'max_rating',
+                      options_for_select(1..5),
+                      class: 'form-control',
+                      include_blank: true) %>
     </div>
     <div class='checkbox col-sm-2'>
       <label>
