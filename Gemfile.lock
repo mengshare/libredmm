@@ -118,7 +118,7 @@ GEM
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     numerizer (0.1.1)
-    opendmm (0.3.21)
+    opendmm (0.3.22)
       activesupport
       chronic_duration
       httparty
