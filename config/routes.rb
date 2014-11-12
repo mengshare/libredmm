@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'faq', to: 'pages#faq', as: :faq
   get 'search', to: 'pages#search', as: :search
+  get 'toggle_proxy', to: 'pages#toggle_proxy', as: :toggle_proxy
 
   resources :products, only: [:index, :show, :destroy]
 
