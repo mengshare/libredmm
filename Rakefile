@@ -24,6 +24,7 @@ namespace :products do
         series[$1] = $2.length unless series[$1] && series[$1] < $2.length
       end
     end
+    found_count = 0
     series.sort.each do |alpha, min_len|
       puts "Trying #{alpha}-" + "x" * min_len
       99999.times do |i|
@@ -32,8 +33,10 @@ namespace :products do
         next if Product.search_in_db(code)
         break unless Product.search(code)
         puts "> Found #{code}"
+        found_count += 1
       end
     end
+    puts "Found #{found_count} in total"
   end
 
 private

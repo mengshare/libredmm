@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     if @product.refresh!
       redirect_to @product, info: "Product information refreshed, if you still believe it's wrong, click Report Error again. Thanks!"
     else
-      Log.error_report(params[:id])
+      logger.tagged 'ERROR_REPORT' do logger.error params[:id] end
       redirect_to @product, success: "Error reported. Thanks!"
     end
   end
@@ -39,6 +39,6 @@ class ProductsController < ApplicationController
   private
     def set_product
       @product = Product.search(params[:id])
-      Log.not_found(params[:id]) unless @product
+      logger.tagged 'NOT_FOUND' do logger.warn params[:id] end unless @product
     end
 end
