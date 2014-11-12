@@ -29,12 +29,6 @@
     </div>
     <div class='checkbox col-sm-2'>
       <label>
-        <%= check_box_tag 'reviewed', 1, params[:reviewed] %>
-        Only Reviewed
-      </label>
-    </div>
-    <div class='checkbox col-sm-2'>
-      <label>
         <%= check_box_tag 'text_mode', 1, params[:text_mode] %>
         Text Mode
       </label>
@@ -50,7 +44,7 @@
                           autocomplete: 'off',
                           typeahead: 'code for code in codes | filter:$viewValue | limitTo:10') %>
     </div>
-    <div class='form-group col-sm-8' ng-controller='TitleTypeaheadCtrl'>
+    <div class='form-group col-sm-10' ng-controller='TitleTypeaheadCtrl'>
       <%= label_tag 'title', 'Title' %>
       <%= text_field_tag('title', params[:title], class: 'form-control') %>
     </div>

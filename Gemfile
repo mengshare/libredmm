@@ -25,9 +25,6 @@ gem 'dotiw'
 gem 'kaminari'
 gem 'simple_form'
 
-# Controller
-gem 'devise'
-
 # Server
 gem 'unicorn'
 

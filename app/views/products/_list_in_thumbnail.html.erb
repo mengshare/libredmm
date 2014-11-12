@@ -7,13 +7,6 @@
             <%= image_tag proxy_image(product.thumbnail_image), class: 'thumbnail col-sm-12' %>
           <% end %>
         </section>
-        <section class='ratings'>
-          <% if user_signed_in? %>
-            <span class='user-rating'>
-              <%= render partial: 'products/rating', locals: { product: product } %>
-            </span>
-          <% end %>
-        </section>
         <section class='title'>
           <%= link_to product do %>
             <%= product.code %>

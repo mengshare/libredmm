@@ -21,61 +21,6 @@
       <% end %>
       <ul class='nav navbar-nav navbar-right'>
         <%= yield :navbar_links %>
-        <li class='has-tooltip' data-toggle='tooltip' data-placement='bottom' title="Can't see image? Try turning proxy on.">
-          <%= link_to toggle_proxy_path do %>
-            <%= icon_fa 'magic', 'Proxy ' %>
-            <% if use_image_proxy? %>
-              ON
-            <% else %>
-              OFF
-            <% end %>
-          <% end %>
-        </li>
-        <% if user_signed_in? %>
-          <li class='dropdown'>
-            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-              <%= icon_fa 'user', current_user.email %>
-              <b class='caret'></b>
-            </a>
-            <ul class='dropdown-menu'>
-              <li>
-                <%= link_to products_path(reviewed: true) do %>
-                  <%= icon_fa 'eye', 'Reviews' %>
-                <% end %>
-              </li>
-              <li class='divider'></li>
-              <li>
-                <%= link_to edit_user_registration_path do %>
-                  <%= icon_fa 'edit', 'Edit profile' %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <%= icon_fa 'sign-out', 'Sign out' %>
-                <% end %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li class='dropdown'>
-            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-              <%= icon_fa 'user', 'Anonymous' %>
-              <b class='caret'></b>
-            </a>
-            <ul class='dropdown-menu'>
-              <li>
-                <%= link_to new_user_session_path do %>
-                  <%= icon_fa 'sign-in', 'Sign in' %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_user_registration_path do %>
-                  <%= icon_fa 'bolt', 'Sign up' %>
-                <% end %>
-              </li>
-            </ul>
-          </li>
-        <% end %>
       </ul>
     </div>
   </div>

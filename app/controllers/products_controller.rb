@@ -4,11 +4,6 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    if params[:reviewed]
-      authenticate_user!
-      @products = Product.reviewed_by(current_user)
-    end
-
     @products = @products.with_actress(params[:actress])
                          .with_code(params[:code])
                          .with_genre(params[:genre])

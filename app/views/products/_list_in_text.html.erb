@@ -4,9 +4,6 @@
       <th class='col-sm-1'>Code</th>
       <th class='col-sm-5'>Title</th>
       <th class='col-sm-1'>Actresses</th>
-      <% if user_signed_in? %>
-        <th class='col-sm-1'>Rating</th>
-      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -25,11 +22,6 @@
             <% end %>
           <% end %>
         </td>
-        <% if user_signed_in? %>
-          <td>
-            <%= render partial: 'rating', locals: { product: product } %>
-          </td>
-        <% end %>
       <% end %>
     <% end %>
   </tbody>
