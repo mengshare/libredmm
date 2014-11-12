@@ -2,8 +2,6 @@ class Product < ActiveRecord::Base
   #==============
   # Associations
   #==============
-  has_many :reviews, class_name: 'ProductReview'
-  has_many :reviewed_users, through: :reviews, source: :user
   has_and_belongs_to_many :actresses
 
   #=============
@@ -15,18 +13,6 @@ class Product < ActiveRecord::Base
   #========
   # Scopes
   #========
-  scope :reviewed_by, ->(user) do
-    includes(:reviews).where('product_reviews.user_id' => user.id) if user.present?
-  end
-
-  scope :min_rating, ->(rating) do
-    includes(:reviews).where('product_reviews.rating >= ?', rating) if rating.present?
-  end
-
-  scope :max_rating, ->(rating) do
-    includes(:reviews).where('product_reviews.rating <= ?', rating) if rating.present?
-  end
-
   scope :with_actress, ->(actress) do
     includes(:actresses).where('actresses.name' => actress) if actress.present?
   end
@@ -75,20 +61,6 @@ class Product < ActiveRecord::Base
       product.actresses << Actress.find_or_create_by(name: actress)
     end if actresses
     product.save ? product : nil
-  end
-
-  #========
-  # Rating
-  #========
-  def average_rating
-    reviews.average(:rating)
-  end
-
-  def rating_by(user)
-    return nil unless user
-    reviews.detect do |review|
-      review.user_id == user.id
-    end.try(:rating)
   end
 
   #=======
