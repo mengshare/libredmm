@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141112031158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actresses", force: true do |t|
+  create_table "actresses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20141112031158) do
 
   add_index "actresses", ["name"], name: "index_actresses_on_name", using: :btree
 
-  create_table "actresses_products", id: false, force: true do |t|
+  create_table "actresses_products", id: false, force: :cascade do |t|
     t.integer "actress_id"
     t.integer "product_id"
   end
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "brand"
     t.string   "code"
     t.string   "cover_image"
