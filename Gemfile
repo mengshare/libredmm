@@ -27,6 +27,7 @@ gem 'simple_form'
 
 # Server
 gem 'unicorn'
+gem 'responders'
 
 group :development do
   gem 'guard'
