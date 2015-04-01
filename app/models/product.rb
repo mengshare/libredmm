@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   #=============
   # Validations
   #=============
-  validates :code, :title, :thumbnail_image, :cover_image, presence: true
+  validates :code, :title, :cover_image, presence: true
   validates :code, uniqueness: true
 
   #========
@@ -70,6 +70,10 @@ class Product < ActiveRecord::Base
     count          = self.count
     max_updated_at = self.maximum(:updated_at).try(:utc).try(:to_s, :number)
     "products/all-#{count}-#{max_updated_at}"
+  end
+
+  def thumbnail_image
+    super || self.cover_image
   end
 
   def refresh!
