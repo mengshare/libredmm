@@ -14,22 +14,14 @@
   </section>
   <section class='details col-sm-4'>
     <dl class='dl-horizontal'>
-      <%= product_spec('Actresses',
-                       @product.actresses.map { |actress|
-                         link_to_products_with_filter(actress: actress.name)
-                       },
-                       'female') %>
+      <%= product_spec('Actresses', @product.actresses, 'female') %>
       <%= product_spec('Directors', @product.directors, 'male') %>
 
       <%= product_spec('Actress Types', @product.actress_types, 'tags') %>
       <%= product_spec('Boobs', @product.boobs, 'dot-circle-o') %>
       <%= product_spec('Brand', @product.brand, 'tag') %>
       <%= product_spec('Categories', @product.categories, 'folder-o') %>
-      <%= product_spec('Genres',
-                       @product.genres.map { |genre|
-                         link_to_products_with_filter(genre: genre)
-                       },
-                       'tags') %>
+      <%= product_spec('Genres', @product.genres, 'tags') %>
       <%= product_spec('Label', @product.label, 'tag') %>
       <%= product_spec('Scatologies', @product.scatologies, 'tags') %>
       <%= product_spec('Scenes', @product.scenes, 'tags') %>
@@ -42,9 +34,7 @@
                       ) if @product.movie_length %>
       <%= product_spec('Release Date', @product.release_date, 'calendar') %>
 
-      <%= product_spec('Maker',
-                       link_to_products_with_filter(maker: @product.maker),
-                       'suitcase') %>
+      <%= product_spec('Maker', @product.maker, 'suitcase') %>
       <%= product_spec('Source Page',
                        link_to(URI(@product.page).host, @product.page, target: '_blank'),
                        'suitcase') %>

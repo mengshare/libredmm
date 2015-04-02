@@ -1,21 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
-  def index
-    @products = Product.all
-
-    @products = @products.with_actress(params[:actress])
-                         .with_code(params[:code])
-                         .with_genre(params[:genre])
-                         .with_maker(params[:maker])
-                         .with_title(params[:title])
-
-    @products = params[:latest] ? @products.order(created_at: :desc)
-                                : @products.order(code: :asc)
-
-    @products = @products.page(params[:page]).per(30)
-  end
-
   def show
     if @product
       respond_to do |format|

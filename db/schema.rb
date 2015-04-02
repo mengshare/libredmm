@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112031158) do
+ActiveRecord::Schema.define(version: 20150402201202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actresses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "actresses", ["name"], name: "index_actresses_on_name", using: :btree
 
   create_table "actresses_products", id: false, force: :cascade do |t|
     t.integer "actress_id"
@@ -56,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141112031158) do
     t.string   "aliases",          default: [], array: true
     t.string   "scatologies",      default: [], array: true
     t.string   "transsexualities", default: [], array: true
+    t.string   "actresses",        default: [], array: true
   end
 
   add_index "products", ["aliases"], name: "index_products_on_aliases", using: :gin
