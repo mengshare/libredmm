@@ -22,38 +22,4 @@ module ProductsHelper
     end
     (content_tag(:dt, term) + content_tag(:dd, description)).html_safe
   end
-
-  def contextual_rating_class(rating)
-    case rating
-    when 1
-      'danger'
-    when 2
-      'warning'
-    when 4, 5
-      'success'
-    else
-      nil
-    end
-  end
-
-  def rating_label(product, options = {})
-    rating = product.average_rating
-    return nil unless rating
-    options[:class] ||= ''
-    options[:class] = [ options[:class], 'label label-success' ].join(' ')
-    content_tag :span, "Average: #{rating}", options
-  end
-
-  def rating_badge(product, options = {})
-    rating = product.average_rating
-    return nil unless rating
-    options[:class] ||= ''
-    options[:class] = [ options[:class], 'badge' ].join(' ')
-    content_tag :span, rating, options
-  end
-
-  def link_to_products_with_filter(options, text = nil)
-    text ||= options.values.first
-    link_to(text, products_path(options)) if text
-  end
 end
