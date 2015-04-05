@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402201202) do
+ActiveRecord::Schema.define(version: 20150405031655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +45,12 @@ ActiveRecord::Schema.define(version: 20150402201202) do
     t.string   "genres",           default: [], array: true
     t.string   "sample_images",    default: [], array: true
     t.string   "scenes",           default: [], array: true
-    t.string   "aliases",          default: [], array: true
     t.string   "scatologies",      default: [], array: true
     t.string   "transsexualities", default: [], array: true
     t.string   "actresses",        default: [], array: true
+    t.string   "tags",             default: [], array: true
   end
 
-  add_index "products", ["aliases"], name: "index_products_on_aliases", using: :gin
   add_index "products", ["code"], name: "index_products_on_code", unique: true, using: :btree
   add_index "products", ["maker"], name: "index_products_on_maker", using: :btree
 
